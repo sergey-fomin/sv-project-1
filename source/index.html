@@ -121,144 +121,7 @@
                 </div>
                 <div class="main__card-list">
                     <ul class="card-list">
-                        <li class="card-list__item">
-                            <div class="card-item">
-                                <picture>
-                                    <source
-                                        type="image/webp"
-                                        srcset="
-                                            img/karachaevsk.webp    1x,
-                                            img/karachaevsk@2x.webp 2x
-                                        "
-                                    />
-                                    <img
-                                        src="img/karachaevsk.jpg"
-                                        srcset="img/karachaevsk@2x.jpg 2x"
-                                        alt="karachaevsk"
-                                        class="card-item__image"
-                                    />
-                                </picture>
-                                <div class="card-item__description">
-                                    <p class="card-item__title">Карачаевск</p>
-                                    <button class="card-item__btn"></button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card-list__item">
-                            <div class="card-item">
-                                <picture>
-                                    <source
-                                        type="image/webp"
-                                        srcset="
-                                            img/elbrus.webp    1x,
-                                            img/elbrus@2x.webp 2x
-                                        "
-                                    />
-                                    <img
-                                        src="img/elbrus.jpg"
-                                        srcset="img/elbrus@2x.jpg 2x"
-                                        alt="elbrus"
-                                        class="card-item__image"
-                                    />
-                                </picture>
-                                <div class="card-item__description">
-                                    <p class="card-item__title">Гора Эльбрус</p>
-                                    <button class="card-item__btn"></button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card-list__item">
-                            <div class="card-item">
-                                <picture>
-                                    <source
-                                        type="image/webp"
-                                        srcset="
-                                            img/dombai.webp    1x,
-                                            img/dombai@2x.webp 2x
-                                        "
-                                    />
-                                    <img
-                                        src="img/dombai.jpg"
-                                        srcset="img/dombai@2x.jpg 2x"
-                                        alt="dombai"
-                                        class="card-item__image"
-                                    />
-                                </picture>
-                                <div class="card-item__description">
-                                    <p class="card-item__title">Домбай</p>
-                                    <button class="card-item__btn"></button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card-list__item">
-                            <div class="card-item">
-                                <picture>
-                                    <source
-                                        type="image/webp"
-                                        srcset="
-                                            img/elbrus.webp    1x,
-                                            img/elbrus@2x.webp 2x
-                                        "
-                                    />
-                                    <img
-                                        src="img/elbrus.jpg"
-                                        srcset="img/elbrus@2x.jpg 2x"
-                                        alt="elbrus"
-                                        class="card-item__image"
-                                    />
-                                </picture>
-                                <div class="card-item__description">
-                                    <p class="card-item__title">Гора Эльбрус</p>
-                                    <button class="card-item__btn"></button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card-list__item">
-                            <div class="card-item">
-                                <picture>
-                                    <source
-                                        type="image/webp"
-                                        srcset="
-                                            img/dombai.webp    1x,
-                                            img/dombai@2x.webp 2x
-                                        "
-                                    />
-                                    <img
-                                        src="img/dombai.jpg"
-                                        srcset="img/dombai@2x.jpg 2x"
-                                        alt="dombai"
-                                        class="card-item__image"
-                                    />
-                                </picture>
-                                <div class="card-item__description">
-                                    <p class="card-item__title">Домбай</p>
-                                    <button class="card-item__btn"></button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="card-list__item">
-                            <div class="card-item">
-                                <picture>
-                                    <source
-                                        type="image/webp"
-                                        srcset="
-                                            img/karachaevsk.webp    1x,
-                                            img/karachaevsk@2x.webp 2x
-                                        "
-                                    />
-                                    <img
-                                        src="img/karachaevsk.jpg"
-                                        srcset="img/karachaevsk@2x.jpg 2x"
-                                        alt="karachaevsk"
-                                        class="card-item__image"
-                                    />
-                                </picture>
-                                <div class="card-item__description">
-                                    <p class="card-item__title">Карачаевск</p>
-                                    <button class="card-item__btn"></button>
-                                </div>
-                            </div>
-                        </li>
+                        <!-- Place for cards -->
                     </ul>
                 </div>
             </div>
@@ -269,31 +132,72 @@
             </div>
         </footer>
 
-        <div class="modal">
-            <div class="modal__container">
-                <form class="modal__form" action="" method="post">
-                    <fieldset class="modal__edit-profile">
-                        <legend class="modal__form-title">
-                            Редактировать профиль
-                        </legend>
-                        <input
-                            class="modal__form-input"
-                            type="text"
-                            name="name"
-                            id="name"
+        <!-- CARD TEMPLATE -->
+        <template id="card-template">
+            <li class="card-list__item">
+                <div class="card-item">
+                    <picture>
+                        <source
+                            type="image/webp"
+                            srcset="
+                                img/karachaevsk.webp    1x,
+                                img/karachaevsk@2x.webp 2x
+                            "
                         />
-                        <input
-                            class="modal__form-input"
-                            type="text"
-                            name="occupation"
-                            id="occupation"
+                        <img
+                            alt="karachaevsk"
+                            class="card-item__image"
                         />
-                    </fieldset>
-                    <button class="modal__form-submit-btn" type="submit">
-                        Сохранить
-                    </button>
-                </form>
+                    </picture>
+                    <div class="card-item__description">
+                        <p class="card-item__title">Карачаевск</p>
+                        <button class="card-item__btn"></button>
+                    </div>
+                </div>
+            </li>
+        </template>
+
+        <!-- EDIT PROFILE MODAL -->
+        <template id="edit-modal-template">
+            <div class="modal">
+                <div class="modal__container">
+                    <div class="modal__form-wrapper">
+                        <form class="modal__form" action="" method="post">
+                            <fieldset class="modal__edit-profile">
+                                <legend class="modal__form-title">
+                                    Редактировать профиль
+                                </legend>
+                                <input
+                                    class="modal__form-input"
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                />
+                                <input
+                                    class="modal__form-input"
+                                    type="text"
+                                    name="occupation"
+                                    id="occupation"
+                                />
+                            </fieldset>
+                            <button class="modal__form-submit-btn" type="submit">
+                                Сохранить
+                            </button>
+                        </form>
+                        <button class="modal__form-close-btn" type="button">
+                            <img
+                                class="profile__edit-btn-icon"
+                                src="img/close-icon.svg"
+                                alt="edit"
+                            />
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </template>
+
+        <!-- ADD PLACE MODAL -->
+
+        <script src="js/script.min.js"></script>
     </body>
 </html>

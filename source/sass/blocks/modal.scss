@@ -1,8 +1,18 @@
 .modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: rgba($black, 0.5);
+    position: fixed;
+    inset: 0 0 0 0;
 
     &__container {
         padding-inline: 20px;
+    }
+
+    &__form-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
     }
 
     &__form {
@@ -57,6 +67,27 @@
         &:focus,
         &:active {
             opacity: 0.8;
+        }
+    }
+
+    &__form-close-btn {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        margin-left: auto;
+        margin-bottom: 16px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        &:hover,
+        &:focus-visible,
+        &:active {
+            opacity: 0.6;
         }
     }
 }

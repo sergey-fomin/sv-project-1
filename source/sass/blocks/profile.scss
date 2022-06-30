@@ -39,7 +39,7 @@
         cursor: pointer;
 
         &:hover,
-        &:focus,
+        &:focus-visible,
         &:active {
             opacity: 0.6;
         }
