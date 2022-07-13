@@ -4,8 +4,8 @@
     align-items: center;
 
     &__avatar {
-        width: 120px;
-        height: 120px;
+        min-width: 120px;
+        min-height: 120px;
         margin-bottom: 26px;
         border-radius: 50%;
     }

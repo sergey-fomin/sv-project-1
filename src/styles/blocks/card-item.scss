@@ -34,7 +34,7 @@
         margin: 0;
         border: none;
         outline: none;
-        background: url("../img/like-icon.svg") no-repeat;
+        background: url("../assets/svg/like-icon.svg") no-repeat;
         cursor: pointer;
 
         &:hover,
@@ -44,7 +44,7 @@
 
         &:active,
         &.is-active {
-            background: url("../img/like-icon-active.svg") no-repeat;
+            background: url("../assets/svg/like-icon-active.svg") no-repeat;
         }
     }
 }

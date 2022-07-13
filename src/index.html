@@ -12,7 +12,6 @@
             type="font/woff2"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="css/style.min.css" />
     </head>
 
     <body class="page-body">
@@ -81,13 +80,13 @@
                             <source
                                 type="image/webp"
                                 srcset="
-                                    img/avatar.webp    1x,
-                                    img/avatar@2x.webp 2x
+                                    ../assets/img/avatar.webp    1x,
+                                    ../assets/img/avatar@2x.webp 2x
                                 "
                             />
                             <img
-                                src="img/avatar.jpg"
-                                srcset="img/avatar@2x.jpg 2x"
+                                src="../assets/img/avatar.jpg"
+                                srcset="../assets/img/avatar@2x.jpg 2x"
                                 alt="avatar"
                                 class="profile__avatar"
                                 width="120"
@@ -101,7 +100,7 @@
                                 <button class="profile__edit-btn">
                                     <img
                                         class="profile__edit-btn-icon"
-                                        src="img/edit-icon.svg"
+                                        src="assets/svg/edit-icon.svg"
                                         alt="edit"
                                     />
                                 </button>
@@ -113,7 +112,7 @@
                         <button class="profile__add-card-btn">
                             <img
                                 class="profile__add-card-btn-icon"
-                                src="img/plus-icon.svg"
+                                src="assets/svg/plus-icon.svg"
                                 alt="mystery"
                             />
                         </button>
@@ -143,7 +142,7 @@
                         />
                         <img
                             alt="nature"
-                            src="img/default-card-image.jpg"
+                            src="assets/img/default-card-image.jpg"
                             class="card-item__image"
                         />
                     </picture>
@@ -196,7 +195,7 @@
                         <button class="modal__form-close-btn" type="button">
                             <img
                                 class="modal__edit-btn-icon"
-                                src="img/close-icon.svg"
+                                src="assets/img/close-icon.svg"
                                 alt="edit"
                             />
                         </button>
@@ -237,7 +236,7 @@
                         <button class="modal__form-close-btn" type="button">
                             <img
                                 class="modal__edit-btn-icon"
-                                src="img/close-icon.svg"
+                                src="assets/img/close-icon.svg"
                                 alt="edit"
                             />
                         </button>
@@ -245,7 +244,5 @@
                 </div>
             </div>
         </template>
-        <!-- DELETE AFTER WEBPACK MIGRATION  -->
-        <script src="js/script.min.js" type="module"></script>
     </body>
 </html>
