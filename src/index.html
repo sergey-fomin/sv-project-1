@@ -154,95 +154,76 @@
             </li>
         </template>
 
-        <!-- TODO: MODAL TEMPLATE -->
-        <!-- <template id="modal-template">
+        <!-- MODAL TEMPLATE -->
+        <template id="modal-template">
             <div class="modal">
-                <div class="modal__container"> -->
+                <div id="modal-container" class="modal__container">
                     <!-- Place for content -->
-                <!-- </div>
-            </div>
-        </template> -->
-
-        <!-- EDIT PROFILE MODAL -->
-        <template id="edit-modal-template">
-            <div class="modal">
-                <div class="modal__container">
-                    <div class="modal__form-wrapper">
-                        <form class="modal__form" action="" method="post">
-                            <fieldset class="modal__edit-profile">
-                                <legend class="modal__form-title">
-                                    Редактировать профиль
-                                </legend>
-                                <input
-                                    class="modal__form-input"
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    placeholder="Введите имя"
-                                />
-                                <input
-                                    class="modal__form-input"
-                                    type="text"
-                                    name="occupation"
-                                    id="occupation"
-                                    placeholder="Введите род деятельности"
-                                />
-                            </fieldset>
-                            <button class="modal__form-submit-btn" type="submit">
-                                Сохранить
-                            </button>
-                        </form>
-                        <button class="modal__form-close-btn" type="button">
-                            <img
-                                class="modal__edit-btn-icon"
-                                src="assets/img/close-icon.svg"
-                                alt="edit"
-                            />
-                        </button>
-                    </div>
+                    <button class="modal__close-btn" type="button">
+                        <img
+                            class="modal__edit-btn-icon"
+                            src="assets/img/close-icon.svg"
+                            alt="edit"
+                        />
+                    </button>
                 </div>
             </div>
         </template>
 
-        <!-- ADD PLACE MODAL -->
+        <!-- EDIT PROFILE MODAL CONTENT -->
+        <template id="edit-modal-template">
+            <form class="modal__form" action="" method="post">
+                <fieldset class="modal__edit-profile">
+                    <legend class="modal__form-title">
+                        Редактировать профиль
+                    </legend>
+                    <input
+                        class="modal__form-input"
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Введите имя"
+                    />
+                    <input
+                        class="modal__form-input"
+                        type="text"
+                        name="occupation"
+                        id="occupation"
+                        placeholder="Введите род деятельности"
+                    />
+                </fieldset>
+                <button class="modal__form-submit-btn" type="submit">
+                    Сохранить
+                </button>
+            </form>
+        </template>
+
+        <!-- ADD PLACE MODAL CONTENT -->
         <template id="add-card-modal-template">
-            <div class="modal">
-                <div class="modal__container">
-                    <div class="modal__form-wrapper">
-                        <form class="modal__form" action="" method="post">
-                            <fieldset class="modal__add-card">
-                                <legend class="modal__form-title">
-                                    Добавить место
-                                </legend>
-                                <input
-                                    class="modal__form-input"
-                                    type="text"
-                                    name="place-title"
-                                    id="place-title"
-                                    placeholder="Введите название места"
-                                />
-                                <input
-                                    class="modal__form-input"
-                                    type="text"
-                                    name="image-url"
-                                    id="image-url"
-                                    placeholder="Введите URL изображения"
-                                />
-                            </fieldset>
-                            <button class="modal__form-submit-btn" type="submit">
-                                Сохранить
-                            </button>
-                        </form>
-                        <button class="modal__form-close-btn" type="button">
-                            <img
-                                class="modal__edit-btn-icon"
-                                src="assets/img/close-icon.svg"
-                                alt="edit"
-                            />
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <form class="modal__form" action="" method="post">
+                <fieldset class="modal__add-card">
+                    <legend class="modal__form-title">
+                        Добавить место
+                    </legend>
+                    <input
+                        class="modal__form-input"
+                        type="text"
+                        name="place-title"
+                        id="place-title"
+                        placeholder="Введите название места"
+                    />
+                    <input
+                        class="modal__form-input"
+                        type="text"
+                        name="image-url"
+                        id="image-url"
+                        placeholder="Введите URL изображения"
+                    />
+                </fieldset>
+                <button class="modal__form-submit-btn" type="submit">
+                    Сохранить
+                </button>
+            </form>
         </template>
     </body>
 </html>

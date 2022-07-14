@@ -8,11 +8,7 @@
 
     &__container {
         padding-inline: 20px;
-    }
-
-    &__form-wrapper {
         position: relative;
-        z-index: 1;
     }
 
     &__form {
@@ -77,7 +73,7 @@
         }
     }
 
-    &__form-close-btn {
+    &__close-btn {
         width: 32px;
         height: 32px;
         padding: 0;
