@@ -8,13 +8,20 @@ const modalTemplate = document.querySelector('#modal-template').content.querySel
 const isEscKey = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
 /**
+ * Закрывает модальное окно
+ */
+const closeModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.remove();
+}
+
+/**
  * Колбэк обработчика события клика на кнопку закрытия / нажатия клавиши Esc
  * @param {Event} evt
  */
 const closeModalHandler = (evt) => {
-    const modal = document.querySelector('.modal');
     if (isEscKey(evt) || evt.type === 'click') {
-        modal.remove();
+        closeModal();
         document.removeEventListener('keydown', closeModalHandler);
     }
 }
@@ -28,13 +35,17 @@ const closeModalListener = (closeBtn) => {
     closeBtn.addEventListener('click', closeModalHandler);
 };
 
+/**
+ * Создает модалку с нужным контентом
+ * @param {Node} content
+ */
 const openModalWithContent = (content) => {
     const modalElement = modalTemplate.cloneNode(true);
     const modalContainerElement = modalElement.querySelector('#modal-container');
-    const modalCloseBtn = modalElement.querySelector('modal__close-btn');
+    const modalCloseBtn = modalElement.querySelector('.modal__close-btn');
     modalContainerElement.prepend(content);
     document.body.appendChild(modalElement);
     closeModalListener(modalCloseBtn);
 }
 
-export { openModalWithContent };
+export { openModalWithContent, closeModal };
