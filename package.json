@@ -6,10 +6,10 @@
         "editorconfig": "editorconfig-cli",
         "stylelint": "stylelint \"src/styles/**/*.scss\" --syntax scss",
         "test": "npm run editorconfig && npm run stylelint",
-        "build:dev": "cross-env NODE_ENV=development webpack --mode development",
-        "build:prod": "cross-env NODE_ENV=production webpack --mode production",
-        "start:dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --stats-children",
-        "start:prod": "cross-env NODE_ENV=production webpack-dev-server --mode production"
+        "build:dev": "cross-env NODE_ENV=development webpack --mode development --stats-children --config _config/webpack.config.js",
+        "build:prod": "cross-env NODE_ENV=production webpack --mode production --config _config/webpack.config.js",
+        "start:dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --stats-children --config _config/webpack.config.js",
+        "start:prod": "cross-env NODE_ENV=production webpack-dev-server --mode production --config _config/webpack.config.js"
     },
     "devDependencies": {
         "@babel/core": "7.18.6",

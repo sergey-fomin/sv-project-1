@@ -27,11 +27,11 @@ const optimization = () => {
 const filename = (ext) => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
 module.exports = {
-    context: path.resolve(__dirname, 'src'),
+    context: path.resolve(__dirname, './../src'),
     entry: ['@babel/polyfill', './js/main.js'],
     output: {
         filename: filename('js'),
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, './../dist'),
         assetModuleFilename: 'assets/[name].[hash][ext][query]',
         clean: true,
     },
@@ -90,6 +90,9 @@ module.exports = {
         ]
     },
     resolve: {
-        roots: [path.resolve(__dirname, "src/assets")],
+        roots: [path.resolve(__dirname, "./../src/assets")],
     },
+    performance: {
+        hints: 'warning'
+    }
 };
