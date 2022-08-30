@@ -16,7 +16,7 @@ const closeModal = () => {
 }
 
 /**
- * Колбэк обработчика события клика на кнопку закрытия / нажатия клавиши Esc
+ * Обработчик события клика на кнопку закрытия / нажатия клавиши Esc
  * @param {Event} evt
  */
 const closeModalHandler = (evt) => {
@@ -27,7 +27,7 @@ const closeModalHandler = (evt) => {
 }
 
 /**
- * Обработчик события клика на кнопку закрытия / нажатия клавиши Esc
+ * Слушаем клик на кнопку закрытия / нажатия клавиши Esc
  * @param {Element} closeBtn
  */
 const closeModalListener = (closeBtn) => {

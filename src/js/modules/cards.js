@@ -32,7 +32,7 @@ const openCardImageModal = (image) => {
 }
 
 /**
- * Колбэк обработчика события клика на карточку
+ * Обработчик события клика на карточку
  */
 const cardsListHandler = (evt) => {
     if (evt.target.matches('.card-item__image')) {
@@ -45,7 +45,7 @@ const cardsListHandler = (evt) => {
 }
 
 /**
- * Обработчик события клика на карточку
+ * Слушаем клик на карточку
  */
 const cardListListener = () => {
     cardsList.addEventListener('click', cardsListHandler);
@@ -94,7 +94,7 @@ const addCard = (title, url) => {
     cardsList.appendChild(cardElement);
 }
 /**
- * Колбэк обработчика клика на кнопку подтверждения формы создания карточки
+ * Обработчик клика на кнопку подтверждения формы создания карточки
 */
 const submitCardAddingHandler = (evt) => {
     evt.preventDefault();
@@ -107,7 +107,7 @@ const submitCardAddingHandler = (evt) => {
 }
 
 /**
- * Обработчик клика на кнопку подтверждения формы создания карточки
+ * Слушаем клик на кнопку подтверждения формы создания карточки
  */
 const submitCardAddingListener = () => {
     const submitCardAddingBtn = document.querySelector('.modal__form-submit-btn');
@@ -115,7 +115,7 @@ const submitCardAddingListener = () => {
 }
 
 /**
- * Колбэк обработчика события клика на кнопку открытия модалки добавления новой карточки
+ * Обработчик события клика на кнопку открытия модалки добавления новой карточки
  */
 const addCardHandler = () => {
     const addCardModalContent = addCardModalTemplate.cloneNode(true);
@@ -124,7 +124,7 @@ const addCardHandler = () => {
 }
 
 /**
- * Обработчик события клика на кнопку открытия модалки добавления новой карточки
+ * Слушаем клик на кнопку открытия модалки добавления новой карточки
  */
 const addCardListener = () => {
     addCardBtn.addEventListener('click', addCardHandler);

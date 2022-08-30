@@ -7,7 +7,7 @@ const editProfileBtn = profile.querySelector('.profile__edit-btn');
 const editProfileModalTemplate = document.querySelector('#edit-modal-template').content;
 
 /**
- *  Колбэк обработчика подтверждения изменений данных профиля
+ *  Обработчик подтверждения изменений данных профиля
  * @param {Event} evt
  */
 const submitProfileEditHandler = (evt) => {
@@ -22,7 +22,7 @@ const submitProfileEditHandler = (evt) => {
 }
 
 /**
- * Обработчик клика на кнопку подтверждения изменения данных профиля
+ * Слушаем клик на кнопку подтверждения изменения данных профиля
  */
 const submitProfileEditListener = () => {
     const submitProfileEditBtn = document.querySelector('.modal__form-submit-btn');
@@ -30,7 +30,7 @@ const submitProfileEditListener = () => {
 }
 
 /**
- * Колбэк обработчика клика на кнопку редактирования профиля
+ * Обработчик клика на кнопку редактирования профиля
  */
 const editProfileHandler = () => {
     const editProfileModalContent = editProfileModalTemplate.cloneNode(true);
@@ -43,7 +43,7 @@ const editProfileHandler = () => {
 }
 
 /**
- * Обработчик клика на кнопку редактирования профиля
+ * Слушаем клик на кнопку редактирования профиля
  */
 const editProfileBtnListener = () => {
     editProfileBtn.addEventListener('click', editProfileHandler);
