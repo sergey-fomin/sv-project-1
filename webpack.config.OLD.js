@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -31,14 +32,11 @@ module.exports = {
     entry: ['@babel/polyfill', './js/main.js'],
     output: {
         filename: filename('js'),
-        path: path.resolve(__dirname, 'dist'),
-        assetModuleFilename: 'assets/[name].[hash][ext][query]',
-        clean: true,
+        path: path.resolve(__dirname, 'dist')
     },
-    target: isDev ? 'web' : 'browserslist',
     optimization: optimization(),
     devServer: {
-        port: isDev ? 4200 : 4201,
+        port: 4200,
         hot: isDev
     },
     devtool: isDev ? 'source-map' : false,
@@ -49,6 +47,7 @@ module.exports = {
                 collapseWhitespace: isProd
             }
         }),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: filename('css')
         })
@@ -57,24 +56,40 @@ module.exports = {
         rules: [
             {
                 test: /\.html$/,
-                use: ['html-loader']
+                loader: 'html-loader'
             },
             {
-                test: /\.(s[ac]|c)ss$/i,
+                test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: isDev,
+                            reloadAll: true
+                        }
+                    },
+                    'css-loader'
                 ]
             },
             {
-                test: /\.(woff2?|eot|ttf|otf)$/i,
-                type: 'asset/resource',
+                test: /\.(s[ac]ss)$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    'css-loader',
+                    'sass-loader'
+                ]
             },
             {
-                test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
-                type: isProd ? 'asset' : 'asset/resource',
+                test: /\.(eot|woff|woff2|ttf)$/,
+                loader: 'file-loader',
+                type: 'asset/resource'
+            },
+            {
+                test: /\.(jpg|jpeg|png|webp|gif|svg)$/i,
+                loader: 'file-loader',
+                type: "asset/resource",
             },
             {
                 test: /\.m?js$/,
@@ -82,14 +97,13 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
-                        cacheDirectory: true,
+                    presets: ['@babel/preset-env']
                     }
                 }
             }
         ]
     },
     resolve: {
-        roots: [path.resolve(__dirname, "src/assets")],
+      roots: [path.resolve(__dirname, "src/assets")],
     },
 };

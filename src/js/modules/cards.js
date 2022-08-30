@@ -66,7 +66,7 @@ const addCardsFromArray = (cards, cardsAmount) => {
         const cardElement = cardTemplate.cloneNode(true);
         const cardImage = cardElement.querySelector('.card-item__image');
         cardElement.querySelector('.card-item__title').innerText = randomCard.title || '';
-        cardElement.querySelector('source').srcset = randomCard.sourceSrcSet || '';
+        // cardElement.querySelector('source').srcset = randomCard.sourceSrcSet || '';
         cardImage.src = randomCard.imgSrc || '';
         cardImage.srcset = randomCard.imgSrcSet || '';
         cardImage.alt = randomCard.imgAlt || '';

@@ -7,7 +7,7 @@
         <title>Mesto</title>
         <link
             rel="preload"
-            href="fonts/inter-v11-latin_cyrillic-ext-regular.woff2"
+            href="/fonts/inter-v11-latin_cyrillic-ext-regular.woff2"
             as="font"
             type="font/woff2"
             crossorigin="anonymous"
@@ -76,31 +76,21 @@
             <div class="main__container">
                 <div class="main__profile">
                     <div class="profile">
-                        <picture>
-                            <source
-                                type="image/webp"
-                                srcset="
-                                    ../assets/img/avatar.webp    1x,
-                                    ../assets/img/avatar@2x.webp 2x
-                                "
-                            />
-                            <img
-                                src="../assets/img/avatar.jpg"
-                                srcset="../assets/img/avatar@2x.jpg 2x"
-                                alt="avatar"
-                                class="profile__avatar"
-                                width="120"
-                                height="120"
-                            />
-                        </picture>
-
+                        <img
+                            src="/img/avatar.jpg"
+                            srcset="/img/avatar@2x.jpg 2x"
+                            alt="avatar"
+                            class="profile__avatar"
+                            width="120"
+                            height="120"
+                        />
                         <div class="profile__info">
                             <div class="profile__name-wrapper">
                                 <p class="profile__name">Жак-Ив Кусто</p>
                                 <button class="profile__edit-btn">
                                     <img
                                         class="profile__edit-btn-icon"
-                                        src="assets/svg/edit-icon.svg"
+                                        src="/svg/edit-icon.svg"
                                         alt="edit"
                                     />
                                 </button>
@@ -112,7 +102,7 @@
                         <button class="profile__add-card-btn">
                             <img
                                 class="profile__add-card-btn-icon"
-                                src="assets/svg/plus-icon.svg"
+                                src="/svg/plus-icon.svg"
                                 alt="mystery"
                             />
                         </button>
@@ -135,17 +125,11 @@
         <template id="card-template">
             <li class="card-list__item">
                 <div class="card-item">
-                    <picture>
-                        <source
-                            type="image/webp"
-                            srcset=""
-                        />
-                        <img
-                            alt="nature"
-                            src="assets/img/default-card-image.jpg"
-                            class="card-item__image"
-                        />
-                    </picture>
+                    <img
+                        alt="nature"
+                        src="/img/default-card-image.jpg"
+                        class="card-item__image"
+                    />
                     <div class="card-item__description">
                         <p class="card-item__title"></p>
                         <button class="card-item__like-btn"></button>
@@ -157,15 +141,17 @@
         <!-- MODAL TEMPLATE -->
         <template id="modal-template">
             <div class="modal">
-                <div id="modal-container" class="modal__container">
-                    <!-- Place for content -->
-                    <button class="modal__close-btn" type="button">
-                        <img
-                            class="modal__edit-btn-icon"
-                            src="assets/img/close-icon.svg"
-                            alt="edit"
-                        />
-                    </button>
+                <div class="modal__container">
+                    <div id="modal-content-wrapper" class="modal__content-wrapper">
+                        <!-- Place for content -->
+                        <button class="modal__close-btn" type="button">
+                            <img
+                                class="modal__edit-btn-icon"
+                                src="/svg/close-icon.svg"
+                                alt="edit"
+                            />
+                        </button>
+                    </div>
                 </div>
             </div>
         </template>
@@ -227,18 +213,10 @@
         </template>
 
         <template id="image-modal-template">
-            <div class="modal__image-wrapper">
-                <picture>
-                    <source
-                        type="image/webp"
-                        srcset=""
-                    />
-                    <img
-                        alt="nature"
-                        src="assets/img/default-card-image.jpg"
-                        class="modal__image"
-                    />
-                </picture>
+            <div class="modal__image-container">
+                <div class="modal__image-wrapper">
+                    <img class="modal__image" />
+                </div>
             </div>
         </template>
     </body>

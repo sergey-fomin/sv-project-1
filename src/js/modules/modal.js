@@ -41,7 +41,7 @@ const closeModalListener = (closeBtn) => {
  */
 const openModalWithContent = (content) => {
     const modalElement = modalTemplate.cloneNode(true);
-    const modalContainerElement = modalElement.querySelector('#modal-container');
+    const modalContainerElement = modalElement.querySelector('#modal-content-wrapper');
     const modalCloseBtn = modalElement.querySelector('.modal__close-btn');
     modalContainerElement.prepend(content);
     document.body.appendChild(modalElement);
