@@ -14,6 +14,8 @@
     &__content-wrapper {
         max-height: 80vh;
         position: relative;
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
     }
 
     &__close-btn {
@@ -37,65 +39,10 @@
     }
 
     &__form {
-        padding: 25px 20px;
         color: $black;
         background-color: $white;
         box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
         border-radius: 10px;
-    }
-
-    &__edit-profile,
-    &__add-card {
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        border: none;
-    }
-
-    &__form-title {
-        margin-inline: auto;
-        margin-bottom: 75px;
-        font-weight: 900;
-        font-size: 18px;
-        line-height: 22px;
-    }
-
-    &__form-input {
-        min-height: 27px;
-        border: none;
-        border-bottom: 1px solid rgba($black, 0.2);
-        outline: none;
-
-        &:not(:first-of-type) {
-            margin-top: 30px;
-        }
-
-        &:hover,
-        &:focus-visible {
-            border-bottom: 1px solid rgba($black, 0.8);
-        }
-    }
-
-    &__form-submit-btn {
-        width: 100%;
-        min-height: 46px;
-        margin-top: 45px;
-        padding-block: 14px;
-        border: none;
-        outline: none;
-        color: $white;
-        background-color: $black;
-        border-radius: 2px;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-
-        &:hover,
-        &:focus,
-        &:active {
-            opacity: 0.8;
-        }
     }
 
     &__image-container {

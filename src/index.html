@@ -158,58 +158,62 @@
 
         <!-- EDIT PROFILE MODAL CONTENT -->
         <template id="edit-modal-template">
-            <form class="modal__form" action="" method="post">
-                <fieldset class="modal__edit-profile">
-                    <legend class="modal__form-title">
-                        Редактировать профиль
-                    </legend>
-                    <input
-                        class="modal__form-input"
-                        type="text"
-                        name="name"
-                        id="name"
-                        placeholder="Введите имя"
-                    />
-                    <input
-                        class="modal__form-input"
-                        type="text"
-                        name="occupation"
-                        id="occupation"
-                        placeholder="Введите род деятельности"
-                    />
-                </fieldset>
-                <button class="modal__form-submit-btn" type="submit">
-                    Сохранить
-                </button>
-            </form>
+            <div class="modal__form">
+                <form class="form" action="" method="post">
+                    <fieldset class="form__edit-profile">
+                        <legend class="form__title">
+                            Редактировать профиль
+                        </legend>
+                        <input
+                            class="form__input"
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Введите имя"
+                        />
+                        <input
+                            class="form__input"
+                            type="text"
+                            name="occupation"
+                            id="occupation"
+                            placeholder="Введите род деятельности"
+                        />
+                    </fieldset>
+                    <button class="form__submit-btn" type="submit">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
         </template>
 
         <!-- ADD PLACE MODAL CONTENT -->
         <template id="add-card-modal-template">
-            <form class="modal__form" action="" method="post">
-                <fieldset class="modal__add-card">
-                    <legend class="modal__form-title">
-                        Добавить место
-                    </legend>
-                    <input
-                        class="modal__form-input"
-                        type="text"
-                        name="place-title"
-                        id="place-title"
-                        placeholder="Введите название места"
-                    />
-                    <input
-                        class="modal__form-input"
-                        type="text"
-                        name="image-url"
-                        id="image-url"
-                        placeholder="Введите URL изображения"
-                    />
-                </fieldset>
-                <button class="modal__form-submit-btn" type="submit">
-                    Сохранить
-                </button>
-            </form>
+            <div class="modal__form">
+                <form class="form" action="" method="post">
+                    <fieldset class="form__add-card">
+                        <legend class="form__title">
+                            Добавить место
+                        </legend>
+                        <input
+                            class="form__input"
+                            type="text"
+                            name="place-title"
+                            id="place-title"
+                            placeholder="Введите название места"
+                        />
+                        <input
+                            class="form__input"
+                            type="text"
+                            name="image-url"
+                            id="image-url"
+                            placeholder="Введите URL изображения"
+                        />
+                    </fieldset>
+                    <button class="form__submit-btn" type="submit">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
         </template>
 
         <template id="image-modal-template">

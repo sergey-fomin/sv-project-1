@@ -24,7 +24,7 @@ const optimization = () => {
     return config;
 }
 
-const filename = (ext) => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
+const filename = (ext) => isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
 
 module.exports = {
     context: path.resolve(__dirname, './../src'),
@@ -32,7 +32,7 @@ module.exports = {
     output: {
         filename: filename('js'),
         path: path.resolve(__dirname, './../dist'),
-        assetModuleFilename: 'assets/[name].[hash][ext][query]',
+        assetModuleFilename: 'assets/[name].[contenthash].[ext][query]',
         clean: true,
     },
     target: isDev ? 'web' : 'browserslist',
@@ -93,6 +93,6 @@ module.exports = {
         roots: [path.resolve(__dirname, "./../src/assets")],
     },
     performance: {
-        hints: 'warning'
+        hints: isDev ? false : 'warning'
     }
 };
