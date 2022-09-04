@@ -45,9 +45,9 @@ const cardsListHandler = (evt) => {
 }
 
 /**
- * Слушаем клик на карточку
+ * Устанавливаем обработчик события клика на карточку
  */
-const cardListListener = () => {
+const setupCardListListener = () => {
     cardsList.addEventListener('click', cardsListHandler);
 }
 
@@ -57,7 +57,7 @@ const cardListListener = () => {
  * @param {number} cardsAmount - количество карточек
  */
 const addCardsFromArray = (cards, cardsAmount) => {
-    cardListListener();
+    setupCardListListener();
     const cardsListFragment = document.createDocumentFragment();
 
     for (let i = 0; i < cardsAmount; i++) {
@@ -109,7 +109,7 @@ const submitCardAddingHandler = (evt) => {
 /**
  * Слушаем клик на кнопку подтверждения формы создания карточки
  */
-const submitCardAddingListener = () => {
+const setupSubmitCardAddingListener = () => {
     const submitCardAddingBtn = document.querySelector('.modal__form-submit-btn');
     submitCardAddingBtn.addEventListener('click', submitCardAddingHandler);
 }
@@ -120,14 +120,14 @@ const submitCardAddingListener = () => {
 const addCardHandler = () => {
     const addCardModalContent = addCardModalTemplate.cloneNode(true);
     openModalWithContent(addCardModalContent);
-    submitCardAddingListener();
+    setupSubmitCardAddingListener();
 }
 
 /**
  * Слушаем клик на кнопку открытия модалки добавления новой карточки
  */
-const addCardListener = () => {
+const setupAddCardListener = () => {
     addCardBtn.addEventListener('click', addCardHandler);
 }
 
-export { addCardsFromArray, addCardListener };
+export { addCardsFromArray, setupAddCardListener };

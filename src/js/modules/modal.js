@@ -30,7 +30,7 @@ const closeModalHandler = (evt) => {
  * Слушаем клик на кнопку закрытия / нажатия клавиши Esc
  * @param {Element} closeBtn
  */
-const closeModalListener = (closeBtn) => {
+const setupCloseModalListener = (closeBtn) => {
     document.addEventListener('keydown', closeModalHandler);
     closeBtn.addEventListener('click', closeModalHandler);
 };
@@ -45,7 +45,7 @@ const openModalWithContent = (content) => {
     const modalCloseBtn = modalElement.querySelector('.modal__close-btn');
     modalContainerElement.prepend(content);
     document.body.appendChild(modalElement);
-    closeModalListener(modalCloseBtn);
+    setupCloseModalListener(modalCloseBtn);
 }
 
 export { openModalWithContent, closeModal };

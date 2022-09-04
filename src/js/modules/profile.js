@@ -24,7 +24,7 @@ const submitProfileEditHandler = (evt) => {
 /**
  * Слушаем клик на кнопку подтверждения изменения данных профиля
  */
-const submitProfileEditListener = () => {
+const setupSubmitProfileEditListener = () => {
     const submitProfileEditBtn = document.querySelector('.modal__form-submit-btn');
     submitProfileEditBtn.addEventListener('click', submitProfileEditHandler);
 }
@@ -39,14 +39,14 @@ const editProfileHandler = () => {
     const editProfileOccupation = document.querySelector('#occupation');
     editProfileName.value = profileName.innerText;
     editProfileOccupation.value = profileOccupation.innerText;
-    submitProfileEditListener();
+    setupSubmitProfileEditListener();
 }
 
 /**
  * Слушаем клик на кнопку редактирования профиля
  */
-const editProfileBtnListener = () => {
+const setupEditProfileBtnListener = () => {
     editProfileBtn.addEventListener('click', editProfileHandler);
 }
 
-export { editProfileBtnListener };
+export { setupEditProfileBtnListener };
