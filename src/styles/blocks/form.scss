@@ -18,20 +18,45 @@
         line-height: 22px;
     }
 
+    &__input-wrapper {
+        position: relative;
+
+        &:not(:first-of-type) {
+            margin-top: 30px;
+        }
+    }
+
     &__input {
+        width: 100%;
         min-height: 27px;
         border: none;
         border-bottom: 1px solid rgba($black, 0.2);
         outline: none;
 
-        &:not(:first-of-type) {
-            margin-top: 30px;
-        }
-
         &:hover,
         &:focus-visible {
             border-bottom: 1px solid rgba($black, 0.8);
         }
+
+        &--invalid {
+            color: $error;
+            border-bottom: 1px solid $error;
+
+            + .form__input-error {
+                padding: 2px;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &__input-error {
+        position: absolute;
+        width: 100%;
+        color: $white;
+        background-color: $error;
+        border-radius: 0 0 5px 5px;
+        transform: translateY(0);
+        transition: transform 0.3s ease;
     }
 
     &__submit-btn {

@@ -98,10 +98,10 @@ const addCard = (title, url) => {
 */
 const submitCardAddingHandler = (evt) => {
     evt.preventDefault();
-    const newCardTitle = document.querySelector('#place-title');
-    const newCardUrl = document.querySelector('#image-url');
+    const newCardTitle = document.querySelector('#placeTitle');
+    const newCardUrl = document.querySelector('#imageUrl');
+    const submitCardAddingBtn = document.querySelector('.form__submit-btn');
     addCard(newCardTitle.value, newCardUrl.value);
-    const submitCardAddingBtn = document.querySelector('.modal__form-submit-btn');
     submitCardAddingBtn.removeEventListener('click', submitCardAddingHandler);
     closeModal();
 }
@@ -110,7 +110,7 @@ const submitCardAddingHandler = (evt) => {
  * Слушаем клик на кнопку подтверждения формы создания карточки
  */
 const setupSubmitCardAddingListener = () => {
-    const submitCardAddingBtn = document.querySelector('.modal__form-submit-btn');
+    const submitCardAddingBtn = document.querySelector('.form__submit-btn');
     submitCardAddingBtn.addEventListener('click', submitCardAddingHandler);
 }
 

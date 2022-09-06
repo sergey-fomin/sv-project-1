@@ -164,20 +164,26 @@
                         <legend class="form__title">
                             Редактировать профиль
                         </legend>
-                        <input
-                            class="form__input"
-                            type="text"
-                            name="name"
-                            id="name"
-                            placeholder="Введите имя"
-                        />
-                        <input
-                            class="form__input"
-                            type="text"
-                            name="occupation"
-                            id="occupation"
-                            placeholder="Введите род деятельности"
-                        />
+                        <div class="form__input-wrapper">
+                            <input
+                                class="form__input"
+                                type="text"
+                                name="name"
+                                id="name"
+                                placeholder="Введите имя"
+                            />
+                            <div class="form__input-error"></div>
+                        </div>
+                        <div class="form__input-wrapper">
+                            <input
+                                class="form__input"
+                                type="text"
+                                name="occupation"
+                                id="occupation"
+                                placeholder="Введите род деятельности"
+                            />
+                            <div class="form__input-error"></div>
+                        </div>
                     </fieldset>
                     <button class="form__submit-btn" type="submit">
                         Сохранить
@@ -194,20 +200,26 @@
                         <legend class="form__title">
                             Добавить место
                         </legend>
-                        <input
-                            class="form__input"
-                            type="text"
-                            name="place-title"
-                            id="place-title"
-                            placeholder="Введите название места"
-                        />
-                        <input
-                            class="form__input"
-                            type="text"
-                            name="image-url"
-                            id="image-url"
-                            placeholder="Введите URL изображения"
-                        />
+                        <div class="form__input-wrapper">
+                            <input
+                                class="form__input"
+                                type="text"
+                                name="placeTitle"
+                                id="placeTitle"
+                                placeholder="Введите название места"
+                            />
+                            <div class="form__input-error"></div>
+                        </div>
+                        <div class="form__input-wrapper">
+                            <input
+                                class="form__input"
+                                type="text"
+                                name="imageUrl"
+                                id="imageUrl"
+                                placeholder="Введите URL изображения"
+                            />
+                            <div class="form__input-error"></div>
+                        </div>
                     </fieldset>
                     <button class="form__submit-btn" type="submit">
                         Сохранить

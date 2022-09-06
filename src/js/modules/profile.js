@@ -1,3 +1,4 @@
+import { FormManager } from './form.manager';
 import { openModalWithContent, closeModal } from './modal';
 
 const profile = document.querySelector('.profile');
@@ -14,9 +15,9 @@ const submitProfileEditHandler = (evt) => {
     evt.preventDefault();
     const editProfileName = document.querySelector('#name');
     const editProfileOccupation = document.querySelector('#occupation');
+    const submitProfileEditBtn = document.querySelector('.form__submit-btn');
     profileName.innerText = editProfileName.value;
     profileOccupation.innerText = editProfileOccupation.value;
-    const submitProfileEditBtn = document.querySelector('.modal__form-submit-btn');
     submitProfileEditBtn.removeEventListener('click', submitProfileEditHandler);
     closeModal();
 }
@@ -25,7 +26,7 @@ const submitProfileEditHandler = (evt) => {
  * Слушаем клик на кнопку подтверждения изменения данных профиля
  */
 const setupSubmitProfileEditListener = () => {
-    const submitProfileEditBtn = document.querySelector('.modal__form-submit-btn');
+    const submitProfileEditBtn = document.querySelector('.form__submit-btn');
     submitProfileEditBtn.addEventListener('click', submitProfileEditHandler);
 }
 
@@ -39,6 +40,26 @@ const editProfileHandler = () => {
     const editProfileOccupation = document.querySelector('#occupation');
     editProfileName.value = profileName.innerText;
     editProfileOccupation.value = profileOccupation.innerText;
+    new FormManager({
+        formSelector: '.form',
+        inputSelector: '.form__input',
+        errorClass: 'form__input--invalid',
+        onSubmit: function (data) {
+            console.log(data);
+        },
+        // validationRules: {
+        //     name: {
+        //         minLength: 3,
+        //         maxLength: 30,
+        //         required: true,
+        //         errorMessage: {
+        //             tooShort: `Минимальная длина поля - `,
+        //             tooLong: `Максимальная длина поля - `,
+        //             isRequired: `Поле "Имя" обязательно для заполнения`
+        //         }
+        //     },
+        // }
+    });
     setupSubmitProfileEditListener();
 }
 
