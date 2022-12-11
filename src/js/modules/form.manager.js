@@ -1,4 +1,4 @@
-import DEFAULT_VALIDATION_RULES from "../data/validation-rules";
+// import DEFAULT_VALIDATION_RULES from "../data/validation-rules";
 
 export class FormManager {
     constructor({
@@ -6,64 +6,71 @@ export class FormManager {
         inputSelector,
         errorClass,
         onSubmit,
-        validationRules = DEFAULT_VALIDATION_RULES,
+        validationRules,
+        custom,
+        validator,
     }) {
         this._formElement = document.querySelector(formSelector);
-        this._inputElements =document.querySelectorAll(inputSelector);
+        this._inputElements = document.querySelectorAll(inputSelector);
+        this._submitBtn = this._formElement.querySelector(
+            'button[type="submit"]'
+        );
         this._validationRules = validationRules;
-        // this._validationRules = DEFAULT_VALIDATION_RULES;
         this._errorClass = errorClass;
+        this._validator = validator;
 
         this._setupListeners();
     }
 
     _setupListeners = () => {
-        this._formElement.addEventListener('submit', (evt) => {
+        this._formElement.addEventListener("submit", (evt) => {
             evt.preventDefault();
-            onSubmit && onSubmit(this._getData());
+            console.log("submit");
+            // onSubmit && onSubmit(this._getData());
+            this._getData();
         });
 
-        this._inputElements.forEach(inputElement => {
-            inputElement.addEventListener('input', (evt) => {
+        this._inputElements.forEach((inputElement) => {
+            inputElement.addEventListener("input", (evt) => {
                 this._validateInput(evt.target);
+                console.log(this._inputElements);
+                this._getData();
             });
         });
-    }
+    };
 
     _validateInput(inputElement) {
-        const errorElement = document.querySelector(`#${inputElement.id} + .form__input-error`);
+        const errorElement = document.querySelector(
+            `#${inputElement.id} + .form__input-error`
+        );
         const inputName = inputElement.name;
         const inputValue = inputElement.value;
-        const rules = this._validationRules[inputName]
-        let isValid = false;
 
-        if (!rules) {
-            return
-        }
+        const validationResult = this._validator.validate(
+            inputName,
+            inputValue
+        );
 
-        if (rules.required && (inputValue.length === 0)) {
-            // Required
-            inputElement.classList.add(this._errorClass);
-            errorElement.textContent = rules.errorMessage.isRequired;
-        } else if (rules.minLength && (inputValue.length < rules.minLength)) {
-            // Min Length
-            inputElement.classList.add(this._errorClass);
-            errorElement.textContent = rules.errorMessage.tooShort;
-        } else if (rules.minLength && (inputValue.length > rules.maxLength)) {
-            // Max Length
-            inputElement.classList.add(this._errorClass);
-            errorElement.textContent = rules.errorMessage.tooLong;
+        if (validationResult.isValid) {
         } else {
-            isValid = true;
-        }
-
-        if (isValid) {
-            inputElement.classList.remove(this._errorClass);
-            errorElement.textContent = '';
+            errorElement.textContent = validationResult.errors[0].message;
         }
     }
 
     _getData() {
-        return 'data';
+        let data = {};
+
+        this._inputElements.forEach((elem) => {
+            data[`${elem.name}`] = elem.value;
+        });
+        console.log(data);
+        return data;
     }
 }
+
+// В FormManager добавить в конфиг ключ onValidity
+// Это функция, в которую фора будет кидать true/false
+
+// new FormManager({
+//   onValidity: function(isValid) { if(isValid) { разблокировать кнопку } else { заблокировать кнопку } }
+// })
