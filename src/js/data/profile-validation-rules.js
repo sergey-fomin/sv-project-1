@@ -25,6 +25,11 @@ const DEFAULT_VALIDATION_RULES = {
         required: {
             value: false,
         },
+        custom: {
+            message: "Custom message",
+            // для отладки проверка на четность длины
+            fn: (value) => true,
+        },
     },
 };
 

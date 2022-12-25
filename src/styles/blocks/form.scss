@@ -1,8 +1,27 @@
 .form {
     padding: 25px 20px;
 
+    &--color-inversion {
+        .form__input {
+            color: $white;
+            background-color: $black;
+            border-bottom: 1px solid rgba($white, 0.2);
+
+            &:hover,
+            &:focus-visible {
+                border-bottom: 1px solid rgba($white, 0.8);
+            }
+        }
+
+        .form__submit-btn {
+            color: $black;
+            background-color: $white;
+        }
+    }
+
     &__edit-profile,
-    &__add-card {
+    &__add-card,
+    &__login {
         padding: 0;
         margin: 0;
         display: flex;
@@ -80,8 +99,10 @@
         }
 
         &:disabled,
-        &[disabled] {
+        &[disabled],
+        &--disabled {
             opacity: 0.5;
+            pointer-events: none;
         }
     }
 }

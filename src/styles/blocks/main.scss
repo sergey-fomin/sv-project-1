@@ -10,6 +10,45 @@
     &__card-list {
         margin-bottom: 24px;
     }
+
+    &__login-form-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--is-hidden {
+            display: none;
+        }
+    }
+
+    &__login-form {
+        width: 100%;
+        max-width: 360px;
+        text-align: center;
+
+        &--registration {
+            .main__login-form-link {
+                display: inline-block;
+            }
+        }
+    }
+
+    &__login-form-link {
+        display: none;
+        color: $white;
+
+        &:hover,
+        &:focus,
+        &:active {
+            opacity: 0.6;
+        }
+    }
+
+    &__content {
+        &--is-hidden {
+            display: none;
+        }
+    }
 }
 
 @media screen and (min-width: $desktop-width) {

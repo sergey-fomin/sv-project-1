@@ -1,4 +1,4 @@
-const DEFAULT_VALIDATION_RULES = {
+const PROFILE_VALIDATION_RULES = {
     name: {
         minLength: 3,
         maxLength: 30,
@@ -22,4 +22,4 @@ const DEFAULT_VALIDATION_RULES = {
     imageUrl: {},
 };
 
-export default DEFAULT_VALIDATION_RULES;
+export default PROFILE_VALIDATION_RULES;

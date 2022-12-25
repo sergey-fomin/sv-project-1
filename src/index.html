@@ -70,48 +70,86 @@
                         fill="black"
                     />
                 </svg>
+                <div class="header__login-info">
+                    <p class="header__email"></p>
+                    <a href="#" class="header__login-link">Войти</a>
+                </div>
             </div>
         </header>
         <main class="main">
             <div class="main__container">
-                <div class="main__profile">
-                    <div class="profile">
-                        <img
-                            src="/img/avatar.jpg"
-                            srcset="/img/avatar@2x.jpg 2x"
-                            alt="avatar"
-                            class="profile__avatar"
-                            width="120"
-                            height="120"
-                        />
-                        <div class="profile__info">
-                            <div class="profile__name-wrapper">
-                                <p class="profile__name">Жак-Ив Кусто</p>
-                                <button class="profile__edit-btn">
-                                    <img
-                                        class="profile__edit-btn-icon"
-                                        src="/svg/edit-icon.svg"
-                                        alt="edit"
+                <div class="main__login-form-wrapper">
+                    <div class="main__login-form main__login-form--registration">
+                        <form class="form form--color-inversion">
+                            <fieldset class="form__login">
+                                <legend class="form__title">Регистрация</legend>
+                                <div class="form__input-wrapper">
+                                    <input
+                                        class="form__input"
+                                        type="email"
+                                        name="loginEmail"
+                                        id="login-email"
+                                        placeholder="Email"
                                     />
+                                    <div class="form__input-error"></div>
+                                </div>
+                                <div class="form__input-wrapper">
+                                    <input
+                                        class="form__input"
+                                        type="password"
+                                        name="loginPassword"
+                                        id="login-password"
+                                        placeholder="Пароль"
+                                    />
+                                    <div class="form__input-error"></div>
+                                </div>
+                                <button class="form__submit-btn" type="submit">
+                                    Зарегистрироваться
                                 </button>
-                            </div>
-                            <p class="profile__occupation">
-                                Исследователь океана
-                            </p>
-                        </div>
-                        <button class="profile__add-card-btn">
-                            <img
-                                class="profile__add-card-btn-icon"
-                                src="/svg/plus-icon.svg"
-                                alt="mystery"
-                            />
-                        </button>
+                            </fieldset>
+                        </form>
+                        <a href="#" class="main__login-form-link">Уже зарегистрированы? Войти</a>
                     </div>
                 </div>
-                <div class="main__card-list">
-                    <ul class="card-list">
-                        <!-- Place for cards -->
-                    </ul>
+
+                <div class="main__content main__content--is-hidden">
+                    <div class="main__profile">
+                        <div class="profile">
+                            <img
+                                src="/img/avatar.jpg"
+                                srcset="/img/avatar@2x.jpg 2x"
+                                alt="avatar"
+                                class="profile__avatar"
+                                width="120"
+                                height="120"
+                            />
+                            <div class="profile__info">
+                                <div class="profile__name-wrapper">
+                                    <p class="profile__name">Жак-Ив Кусто</p>
+                                    <button class="profile__edit-btn">
+                                        <img
+                                            class="profile__edit-btn-icon"
+                                            src="/svg/edit-icon.svg"
+                                            alt="edit"
+                                        />
+                                    </button>
+                                </div>
+                                <p class="profile__occupation">Исследователь океана</p>
+                            </div>
+                            <button class="profile__add-card-btn">
+                                <img
+                                    class="profile__add-card-btn-icon"
+                                    src="/svg/plus-icon.svg"
+                                    alt="mystery"
+                                />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="main__card-list">
+                        <ul class="card-list">
+                            <!-- Place for cards -->
+                        </ul>
+                    </div>
                 </div>
             </div>
         </main>
@@ -142,7 +180,10 @@
         <template id="modal-template">
             <div class="modal">
                 <div class="modal__container">
-                    <div id="modal-content-wrapper" class="modal__content-wrapper">
+                    <div
+                        id="modal-content-wrapper"
+                        class="modal__content-wrapper"
+                    >
                         <!-- Place for content -->
                         <button class="modal__close-btn" type="button">
                             <img
@@ -156,10 +197,18 @@
             </div>
         </template>
 
+        <!-- LOGIN MESSAGE MODAL CONTENT -->
+        <template id="login-message-template">
+            <div class="login-message">
+                <img src="/svg/success-icon.svg" class="login-message__icon">
+                <p class="login-message__text"></p>
+            </div>
+        </template>
+
         <!-- EDIT PROFILE MODAL CONTENT -->
         <template id="edit-modal-template">
             <div class="modal__form">
-                <form class="form" action="" method="post">
+                <form class="form">
                     <fieldset class="form__edit-profile">
                         <legend class="form__title">
                             Редактировать профиль
@@ -184,10 +233,10 @@
                             />
                             <div class="form__input-error"></div>
                         </div>
+                        <button class="form__submit-btn" type="submit">
+                            Сохранить
+                        </button>
                     </fieldset>
-                    <button class="form__submit-btn" type="submit">
-                        Сохранить
-                    </button>
                 </form>
             </div>
         </template>
@@ -195,11 +244,9 @@
         <!-- ADD PLACE MODAL CONTENT -->
         <template id="add-card-modal-template">
             <div class="modal__form">
-                <form class="form" action="" method="post">
+                <form class="form">
                     <fieldset class="form__add-card">
-                        <legend class="form__title">
-                            Добавить место
-                        </legend>
+                        <legend class="form__title">Добавить место</legend>
                         <div class="form__input-wrapper">
                             <input
                                 class="form__input"
@@ -220,10 +267,10 @@
                             />
                             <div class="form__input-error"></div>
                         </div>
+                        <button class="form__submit-btn" type="submit">
+                            Сохранить
+                        </button>
                     </fieldset>
-                    <button class="form__submit-btn" type="submit">
-                        Сохранить
-                    </button>
                 </form>
             </div>
         </template>

@@ -3,6 +3,9 @@
 
     &__container {
         padding-inline: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         border-bottom: 1px solid $grey;
     }
 
@@ -11,6 +14,28 @@
 
         path {
             fill: $white;
+        }
+    }
+
+    &__login-info {
+        display: flex;
+        gap: 24px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    &__email {
+        margin: 0;
+        font-weight: 500;
+    }
+
+    &__login-link {
+        color: $white;
+
+        &:hover,
+        &:focus,
+        &:active {
+            opacity: 0.6;
         }
     }
 }
