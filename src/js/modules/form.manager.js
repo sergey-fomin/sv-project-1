@@ -7,27 +7,27 @@ export class FormManager {
         submitBtnSelector,
         submitErrorClass,
         validator,
-        custom = undefined,
         onSubmit,
     }) {
         this._formElement = document.querySelector(formSelector);
         this._inputElements = this._formElement.querySelectorAll(inputSelector);
         this._errorClass = errorClass;
         this._submitBtn = this._formElement.querySelector(submitBtnSelector); // прокидывать селектор в конструкторе + класс которым дизейблить
-        // this._validationRules = validationRules;
         this._submitErrorClass = submitErrorClass;
         this._validator = validator;
         this._onSubmit = onSubmit;
         this._initialValues = initialValuesObj;
         this._currentValuesValidity = {};
-
-        // this._setupInitialValues();
         this._onInit();
         this._setupListeners();
     }
     // initial check метод первичной проверки формы, решает дизейблить ли кнопку на старте
     // объект, хранящий состояние формы. ключи - name, значения - isValid
     // forEach текст из инпутов перекинуть в value (editProfileHandler)
+
+    /**
+     * Метод при инициализации формы
+     */
     _onInit() {
         this._setupInitialValues();
         this._setupCurrentValuesValidity();
@@ -55,22 +55,23 @@ export class FormManager {
         });
     }
 
+    /**
+     * Устанавливаем текущее значение валидности формы
+     */
     _setupCurrentValuesValidity() {
-        console.log(this._currentValuesValidity);
-        this._inputElements.forEach((elem) => {
-            this._currentValuesValidity[elem.name] = this._validateInput(elem).validationResult;
-            console.log(this._currentValuesValidity);
+        this._inputElements.forEach((input) => {
+            this._currentValuesValidity[input.name] = this._validateInput(input).isValid;
         });
     }
 
+    /**
+     * Проверяем валидность формы
+     * @returns isValid {Boolean}
+     */
     _checkFormValidity() {
-        for (let input in this._currentValuesValidity) {
-            if (!input.isValid) {
-                return { isValid: false };
-            }
-        }
-
-        return { isValid: true };
+        return Object.values(this._currentValuesValidity).includes(false)
+            ? { isValid: false }
+            : { isValid: true };
     }
 
     /**
@@ -78,10 +79,12 @@ export class FormManager {
      * @param {Event} evt
      */
     _submitFormHandler = (evt) => {
-        evt.preventDefault();
-        console.log("submit");
         if (this._checkFormValidity().isValid) {
             this._onSubmit && this._onSubmit(this._getData());
+
+            console.group("Submitted form data");
+            console.table(this._getData());
+            console.groupEnd();
         }
     };
 
@@ -90,7 +93,7 @@ export class FormManager {
      * @param {Event} evt
      */
     _inputEventHandler = (evt) => {
-        this._handleInputErrors(this._validateInput(evt.target));
+        this._handleInputErrors(evt.target);
         this._getData();
     };
 
@@ -105,21 +108,34 @@ export class FormManager {
         });
     };
 
+    /**
+     * Валидируем переданный инпут
+     * @param inputElement {Element}
+     * @returns inputElement, validationResult
+     */
     _validateInput(inputElement) {
         const inputName = inputElement.name;
         const inputValue = inputElement.value;
         const validationResult = this._validator.validate(inputName, inputValue);
 
-        return { inputElement, validationResult };
+        return validationResult;
     }
 
-    _handleInputErrors({inputElement, validationResult}) {
+    /**
+     * Обрабатываем ошибки валидации в переданном инпуте
+     * @param {inputElement}
+     */
+    _handleInputErrors(inputElement) {
         const errorElement = document.querySelector(`#${inputElement.id} + .form__input-error`);
+        const result = this._validateInput(inputElement);
+        this._currentValuesValidity[inputElement.name] = result.isValid;
 
-        if (validationResult.isValid) {
+        if (result.isValid) {
             errorElement.textContent = '';
+            this._checkFormValidity().isValid && this._submitBtn.classList.remove(this._submitErrorClass);
         } else {
-            errorElement.textContent = validationResult.errors[0];
+            errorElement.textContent = result.errors[0];
+            this._submitBtn.classList.add(this._submitErrorClass);
         }
 
     }
@@ -134,14 +150,6 @@ export class FormManager {
         this._inputElements.forEach((elem) => {
             data[elem.name] = elem.value;
         });
-        console.log(data);
         return data;
     }
 }
-
-// В FormManager добавить в конфиг ключ onValidity
-// Это функция, в которую фора будет кидать true/false
-
-// new FormManager({
-//   onValidity: function(isValid) { if(isValid) { разблокировать кнопку } else { заблокировать кнопку } }
-// })

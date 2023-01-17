@@ -1,8 +1,6 @@
 import { openModalWithContent, closeModal } from './modal';
 
-const cardsList = document.querySelector('.card-list');
 const cardTemplate = document.querySelector('#card-template').content.querySelector('.card-list__item');
-const addCardBtn = document.querySelector('.profile__add-card-btn');
 const addCardModalTemplate = document.querySelector('#add-card-modal-template').content;
 const imageModalTemplate = document.querySelector('#image-modal-template').content;
 
@@ -48,6 +46,7 @@ const cardsListHandler = (evt) => {
  * Устанавливаем обработчик события клика на карточку
  */
 const setupCardListListener = () => {
+    const cardsList = document.querySelector('.card-list');
     cardsList.addEventListener('click', cardsListHandler);
 }
 
@@ -59,6 +58,7 @@ const setupCardListListener = () => {
 const addCardsFromArray = (cards, cardsAmount) => {
     setupCardListListener();
     const cardsListFragment = document.createDocumentFragment();
+    const cardsList = document.querySelector('.card-list');
 
     for (let i = 0; i < cardsAmount; i++) {
         const randomIdx = getRandomInt(0, cards.length - 1);
@@ -66,7 +66,6 @@ const addCardsFromArray = (cards, cardsAmount) => {
         const cardElement = cardTemplate.cloneNode(true);
         const cardImage = cardElement.querySelector('.card-item__image');
         cardElement.querySelector('.card-item__title').innerText = randomCard.title || '';
-        // cardElement.querySelector('source').srcset = randomCard.sourceSrcSet || '';
         cardImage.src = randomCard.imgSrc || '';
         cardImage.srcset = randomCard.imgSrcSet || '';
         cardImage.alt = randomCard.imgAlt || '';
@@ -83,6 +82,7 @@ const addCardsFromArray = (cards, cardsAmount) => {
  * @param {string} url
  */
 const addCard = (title, url) => {
+    const cardsList = document.querySelector('.card-list');
     const cardElement = cardTemplate.cloneNode(true);
     const cardImage = cardElement.querySelector('.card-item__image');
 
@@ -127,6 +127,7 @@ const addCardHandler = () => {
  * Слушаем клик на кнопку открытия модалки добавления новой карточки
  */
 const setupAddCardListener = () => {
+    const addCardBtn = document.querySelector('.profile__add-card-btn');
     addCardBtn.addEventListener('click', addCardHandler);
 }
 

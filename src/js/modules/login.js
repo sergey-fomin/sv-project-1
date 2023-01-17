@@ -1,12 +1,4 @@
-
-// import DEFAULT_CARDS from "../data/default-cards";
-// import { addCardsFromArray, setupAddCardListener } from "./cards";
-// import { setupEditProfileBtnListener } from "./profile";
 import { openModalWithContent, closeModal } from './modal';
-
-
-// const contentTemplate = document.querySelector("#authorized-content-template").content.cloneNode(true);
-// const contentContainer = document.querySelector('.main__container');
 
 const form = document.querySelector('.main__login-form');
 const title = form.querySelector('.form__title');
@@ -17,8 +9,6 @@ const formLoginLink = document.querySelector('.main__login-form-link');
 const headerLoginLink = document.querySelector('.header__login-link');
 const headerLoginEmail = document.querySelector('.header__email');
 
-
-
 const loadProfileContent = () => {
     const pageContent = document.querySelector('.main__content');
     const loginForm = document.querySelector('.main__login-form-wrapper');
@@ -27,12 +17,6 @@ const loadProfileContent = () => {
     headerLoginEmail.textContent = 'email@mail.com';
     loginForm.classList.toggle('main__login-form-wrapper--is-hidden');
     pageContent.classList.toggle('main__content--is-hidden');
-
-    // console.log(contentTemplate);
-    // contentContainer.appendChild(contentTemplate);
-    // addCardsFromArray(DEFAULT_CARDS, 6);
-    // setupAddCardListener();
-    // setupEditProfileBtnListener();
 }
 
 const toggleLoginData = () => {

@@ -19,9 +19,7 @@
         }
     }
 
-    &__edit-profile,
-    &__add-card,
-    &__login {
+    &__fieldset {
         padding: 0;
         margin: 0;
         display: flex;
@@ -91,6 +89,7 @@
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
+        cursor: pointer;
 
         &:hover,
         &:focus,
@@ -103,6 +102,7 @@
         &--disabled {
             opacity: 0.5;
             pointer-events: none;
+            cursor: default;
         }
     }
 }

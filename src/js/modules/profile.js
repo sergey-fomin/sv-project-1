@@ -4,10 +4,6 @@ import { openModalWithContent, closeModal } from "./modal";
 
 import PROFILE_VALIDATION_RULES from "../data/profile-validation-rules";
 
-const profile = document.querySelector(".profile");
-const profileName = profile.querySelector(".profile__name");
-const profileOccupation = profile.querySelector(".profile__occupation");
-const editProfileBtn = profile.querySelector(".profile__edit-btn");
 const editProfileModalTemplate = document.querySelector("#edit-modal-template").content;
 
 /**
@@ -15,6 +11,8 @@ const editProfileModalTemplate = document.querySelector("#edit-modal-template").
  * @param {Event} evt
  */
 const submitProfileEditHandler = (data) => {
+    const profileName = document.querySelector(".profile__name");
+    const profileOccupation = document.querySelector(".profile__occupation");
     profileName.innerText = data.name;
     profileOccupation.innerText = data.occupation;
     closeModal();
@@ -26,18 +24,26 @@ const submitProfileEditHandler = (data) => {
 const editProfileHandler = () => {
     const editProfileModalContent = editProfileModalTemplate.cloneNode(true);
     openModalWithContent(editProfileModalContent);
+    const profileName = document.querySelector(".profile__name");
+    const profileOccupation = document.querySelector(".profile__occupation");
 
     new FormManager({
         initialValuesObj: {
             name: profileName.innerText,
             occupation: profileOccupation.innerText,
         },
-        formSelector: ".form__edit-profile",
+        formSelector: ".form--edit-profile",
         inputSelector: ".form__input",
         errorClass: "form__input--invalid",
         submitBtnSelector: ".form__submit-btn",
         submitErrorClass: "form__submit-btn--disabled",
-        validator: new Validator(PROFILE_VALIDATION_RULES),
+        validator: new Validator(PROFILE_VALIDATION_RULES, {
+            validateInputName: ['name'],
+            message: 'НЕЧЁТНОЕ!',
+            customValidationFn(val) {
+                return val.length % 2 == 0;
+            }
+        }),
         onSubmit: submitProfileEditHandler,
     });
 };
@@ -46,6 +52,7 @@ const editProfileHandler = () => {
  * Слушаем клик на кнопку редактирования профиля
  */
 const setupEditProfileBtnListener = () => {
+    const editProfileBtn = document.querySelector(".profile__edit-btn");
     editProfileBtn.addEventListener("click", editProfileHandler);
 };
 

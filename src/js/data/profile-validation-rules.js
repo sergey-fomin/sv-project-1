@@ -1,4 +1,4 @@
-const DEFAULT_VALIDATION_RULES = {
+const PROFILE_VALIDATION_RULES = {
     name: {
         minLength: {
             value: 3,
@@ -25,12 +25,13 @@ const DEFAULT_VALIDATION_RULES = {
         required: {
             value: false,
         },
-        custom: {
-            message: "Custom message",
-            // для отладки проверка на четность длины
-            fn: (value) => true,
-        },
+        custom: [
+            {
+                message: "Custom message",
+                fn: (value) => value.length % 2 == 0,
+            },
+        ]
     },
 };
 
-export default DEFAULT_VALIDATION_RULES;
+export default PROFILE_VALIDATION_RULES;

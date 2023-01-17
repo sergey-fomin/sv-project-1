@@ -5,12 +5,17 @@ export class Validator {
 
     validate(name, value) {
         const rules = this._rules[name];
+        const errors = [];
+
+        // if (this._customRules && this._customRules.validateInputName.includes(name)) {
+        //     if (this._customRules.customValidationFn(value)) {
+        //         errors.push(this._customRules.message);
+        //     }
+        // }
 
         if (!rules) {
             return { isValid: true };
         }
-
-        const errors = [];
 
         if (rules.required && value.length === 0) {
             errors.push(rules.required.message);
@@ -28,7 +33,17 @@ export class Validator {
             );
         }
 
-        // console.log(errors);
+        if (rules.custom) {
+            if (!Array.isArray(rules.custom)) {
+                rules.custom = [rules.custom];
+            }
+
+            rules.custom.forEach((customRule) => {
+                if (!customRule.fn(value)) {
+                    errors.push(customRule.message)
+                }
+            });
+        }
 
         if (errors.length) {
             return { isValid: false, errors };
