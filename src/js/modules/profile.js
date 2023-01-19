@@ -1,4 +1,4 @@
-import { FormManager } from "./form.manager";
+import { FormManager } from "./form-manager";
 import { Validator } from "./validator";
 import { openModalWithContent, closeModal } from "./modal";
 
@@ -37,13 +37,7 @@ const editProfileHandler = () => {
         errorClass: "form__input--invalid",
         submitBtnSelector: ".form__submit-btn",
         submitErrorClass: "form__submit-btn--disabled",
-        validator: new Validator(PROFILE_VALIDATION_RULES, {
-            validateInputName: ['name'],
-            message: 'НЕЧЁТНОЕ!',
-            customValidationFn(val) {
-                return val.length % 2 == 0;
-            }
-        }),
+        validator: new Validator(PROFILE_VALIDATION_RULES),
         onSubmit: submitProfileEditHandler,
     });
 };

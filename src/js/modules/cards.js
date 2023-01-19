@@ -1,4 +1,8 @@
+import { FormManager } from './form-manager';
+import { Validator } from "./validator";
 import { openModalWithContent, closeModal } from './modal';
+
+import CARD_VALIDATION_RULES from "../data/card-validation-rules";
 
 const cardTemplate = document.querySelector('#card-template').content.querySelector('.card-list__item');
 const addCardModalTemplate = document.querySelector('#add-card-modal-template').content;
@@ -96,22 +100,9 @@ const addCard = (title, url) => {
 /**
  * Обработчик клика на кнопку подтверждения формы создания карточки
 */
-const submitCardAddingHandler = (evt) => {
-    evt.preventDefault();
-    const newCardTitle = document.querySelector('#placeTitle');
-    const newCardUrl = document.querySelector('#imageUrl');
-    const submitCardAddingBtn = document.querySelector('.form__submit-btn');
-    addCard(newCardTitle.value, newCardUrl.value);
-    submitCardAddingBtn.removeEventListener('click', submitCardAddingHandler);
+const submitCardAddingHandler = (data) => {
+    addCard(data.placeTitle, data.imageUrl);
     closeModal();
-}
-
-/**
- * Слушаем клик на кнопку подтверждения формы создания карточки
- */
-const setupSubmitCardAddingListener = () => {
-    const submitCardAddingBtn = document.querySelector('.form__submit-btn');
-    submitCardAddingBtn.addEventListener('click', submitCardAddingHandler);
 }
 
 /**
@@ -120,7 +111,16 @@ const setupSubmitCardAddingListener = () => {
 const addCardHandler = () => {
     const addCardModalContent = addCardModalTemplate.cloneNode(true);
     openModalWithContent(addCardModalContent);
-    setupSubmitCardAddingListener();
+
+    new FormManager({
+        formSelector: ".form--add-card",
+        inputSelector: ".form__input",
+        errorClass: "form__input--invalid",
+        submitBtnSelector: ".form__submit-btn",
+        submitErrorClass: "form__submit-btn--disabled",
+        validator: new Validator(CARD_VALIDATION_RULES),
+        onSubmit: submitCardAddingHandler,
+    });
 }
 
 /**

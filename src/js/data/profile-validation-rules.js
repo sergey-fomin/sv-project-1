@@ -24,13 +24,7 @@ const PROFILE_VALIDATION_RULES = {
         },
         required: {
             value: false,
-        },
-        custom: [
-            {
-                message: "Custom message",
-                fn: (value) => value.length % 2 == 0,
-            },
-        ]
+        }
     },
 };
 

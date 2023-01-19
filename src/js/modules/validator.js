@@ -7,12 +7,6 @@ export class Validator {
         const rules = this._rules[name];
         const errors = [];
 
-        // if (this._customRules && this._customRules.validateInputName.includes(name)) {
-        //     if (this._customRules.customValidationFn(value)) {
-        //         errors.push(this._customRules.message);
-        //     }
-        // }
-
         if (!rules) {
             return { isValid: true };
         }
