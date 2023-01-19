@@ -24,15 +24,13 @@ const optimization = () => {
     return config;
 }
 
-const filename = (ext) => isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
-
 module.exports = {
     context: path.resolve(__dirname, './../src'),
     entry: ['@babel/polyfill', './js/main.js'],
     output: {
-        filename: filename('js'),
+        filename: isDev ? '[name].js' : '[name].[hash].js',
         path: path.resolve(__dirname, './../dist'),
-        assetModuleFilename: 'assets/[name].[contenthash].[ext][query]',
+        assetModuleFilename: isDev ? 'assets/[name].[ext][query]' : 'assets/[name].[hash].[ext][query]',
         clean: true,
     },
     target: isDev ? 'web' : 'browserslist',
@@ -50,7 +48,7 @@ module.exports = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: filename('css')
+            filename: isDev ? '[name].css' : '[name].[hash].css'
         })
     ],
     module: {
