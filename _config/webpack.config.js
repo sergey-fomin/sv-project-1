@@ -30,7 +30,7 @@ module.exports = {
     output: {
         filename: isDev ? '[name].js' : '[name].[hash].js',
         path: path.resolve(__dirname, './../dist'),
-        assetModuleFilename: isDev ? 'assets/[name].[ext][query]' : 'assets/[name].[hash].[ext][query]',
+        assetModuleFilename: isDev ? 'assets/[name][ext][query]' : 'assets/[name].[hash][ext][query]',
         clean: true,
     },
     target: isDev ? 'web' : 'browserslist',

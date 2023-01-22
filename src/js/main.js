@@ -4,11 +4,10 @@ import "../styles/styles.scss";
 import DEFAULT_CARDS from "./data/default-cards";
 import { addCardsFromArray, setupAddCardListener } from "./modules/cards";
 import { setupEditProfileBtnListener } from "./modules/profile";
-import { setupLoginLinksListener, setupLoginSubmitListenter } from "./modules/login";
+import { setupLoginLinksListener, setupLoginFormManager } from "./modules/login";
 
 setupLoginLinksListener();
-setupLoginSubmitListenter();
-// loadProfileContent();
+setupLoginFormManager();
 addCardsFromArray(DEFAULT_CARDS, 6);
 setupAddCardListener();
 setupEditProfileBtnListener();

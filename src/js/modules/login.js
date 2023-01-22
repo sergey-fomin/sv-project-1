@@ -1,25 +1,33 @@
 import { openModalWithContent, closeModal } from './modal';
+import { Router } from './router';
+import { FormManager } from "./form-manager";
+import { Validator } from "./validator";
+
+import LOGIN_VALIDATION_RULES from "../data/login-validation-rules";
 
 const form = document.querySelector('.main__login-form');
 const title = form.querySelector('.form__title');
-const login = form.querySelector('#login-email');
-const password = form.querySelector('#login-password');
 const submitBtn = form.querySelector('.form__submit-btn');
 const formLoginLink = document.querySelector('.main__login-form-link');
-const headerLoginLink = document.querySelector('.header__login-link');
-const headerLoginEmail = document.querySelector('.header__email');
+const header = document.querySelector('.header');
+const headerLoginLink = header.querySelector('.header__login-link');
+const headerLoginEmail = header.querySelector('.header__email');
+
+const router = new Router('registration');
 
 const loadProfileContent = () => {
-    const pageContent = document.querySelector('.main__content');
-    const loginForm = document.querySelector('.main__login-form-wrapper');
-
     headerLoginLink.textContent = 'Выйти';
     headerLoginEmail.textContent = 'email@mail.com';
-    loginForm.classList.toggle('main__login-form-wrapper--is-hidden');
-    pageContent.classList.toggle('main__content--is-hidden');
+    router.open('start-page');
 }
 
 const toggleLoginData = () => {
+    if (header.classList.contains('header--logged-in')) {
+        router.open('registration');
+        header.classList.remove('header--logged-in');
+        return;
+    }
+
     if (form.classList.contains('main__login-form--registration')) {
         headerLoginLink.textContent = 'Регистрация';
         title.textContent = 'Вход';
@@ -34,29 +42,27 @@ const toggleLoginData = () => {
 }
 
 const loginLinksHandler = (evt) => {
-    console.log(evt);
     evt.preventDefault();
     toggleLoginData();
 }
 
-const loginSubmitHandler = (evt) => {
-    evt.preventDefault();
+const loginSubmitHandler = (data) => {
     const loginMessageContent = document.querySelector('#login-message-template').content.cloneNode(true);
     openModalWithContent(loginMessageContent);
     const loginMessageImg = document.querySelector('.login-message__icon');
-    console.log(loginMessageImg);
     const loginMessageText = document.querySelector('.login-message__text');
 
     if (form.classList.contains('main__login-form--registration')) {
-        loginMessageImg.src = '../../assets/svg/success-icon.svg';
+        loginMessageImg.src = require('../../assets/svg/success-icon.svg');
         loginMessageImg.alt = 'success-icon';
         loginMessageText.innerText = 'Вы успешно зарегистрировались!';
+        header.classList.add('header--logged-in');
         setTimeout(() => {
             closeModal();
             loadProfileContent();
-        }, 2000);
+        }, 1500);
     } else {
-        loginMessageImg.src = '../../assets/svg/fail-icon.svg';
+        loginMessageImg.src = require('../../assets/svg/fail-icon.svg');
         loginMessageImg.alt = 'fail-icon';
         loginMessageText.innerText = 'Что-то пошло не так! Попробуйте ещё раз.';
     }
@@ -68,8 +74,16 @@ const setupLoginLinksListener = () => {
     headerLoginLink.addEventListener('click', loginLinksHandler);
 }
 
-const setupLoginSubmitListenter = () => {
-    submitBtn.addEventListener('click', loginSubmitHandler);
+const setupLoginFormManager = () => {
+    new FormManager({
+        formSelector: ".form--login",
+        inputSelector: ".form__input",
+        errorClass: "form__input--invalid",
+        submitBtnSelector: ".form__submit-btn",
+        submitErrorClass: "form__submit-btn--disabled",
+        validator: new Validator(LOGIN_VALIDATION_RULES),
+        onSubmit: loginSubmitHandler,
+    });
 }
 
-export { setupLoginLinksListener, setupLoginSubmitListenter };
+export { setupLoginLinksListener, setupLoginFormManager };

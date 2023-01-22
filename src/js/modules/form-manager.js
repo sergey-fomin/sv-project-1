@@ -79,6 +79,7 @@ export class FormManager {
      * @param {Event} evt
      */
     _submitFormHandler = (evt) => {
+        evt.preventDefault();
         if (this._checkFormValidity().isValid) {
             this._onSubmit && this._onSubmit(this._getData());
 

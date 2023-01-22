@@ -15,10 +15,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        &--is-hidden {
-            display: none;
-        }
     }
 
     &__login-form {
@@ -41,12 +37,6 @@
         &:focus,
         &:active {
             opacity: 0.6;
-        }
-    }
-
-    &__content {
-        &--is-hidden {
-            display: none;
         }
     }
 }

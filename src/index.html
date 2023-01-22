@@ -76,7 +76,7 @@
                 </div>
             </div>
         </header>
-        <main class="main">
+        <main class="main" data-route="registration">
             <div class="main__container">
                 <div class="main__login-form-wrapper">
                     <div class="main__login-form main__login-form--registration">
@@ -111,45 +111,46 @@
                         <a href="#" class="main__login-form-link">Уже зарегистрированы? Войти</a>
                     </div>
                 </div>
-
-                <div class="main__content main__content--is-hidden">
-                    <div class="main__profile">
-                        <div class="profile">
-                            <img
-                                src="/img/avatar.jpg"
-                                srcset="/img/avatar@2x.jpg 2x"
-                                alt="avatar"
-                                class="profile__avatar"
-                                width="120"
-                                height="120"
-                            />
-                            <div class="profile__info">
-                                <div class="profile__name-wrapper">
-                                    <p class="profile__name">Жак-Ив Кусто</p>
-                                    <button class="profile__edit-btn">
-                                        <img
-                                            class="profile__edit-btn-icon"
-                                            src="/svg/edit-icon.svg"
-                                            alt="edit"
-                                        />
-                                    </button>
-                                </div>
-                                <p class="profile__occupation">Исследователь океана</p>
+            </div>
+        </main>
+        <main class="main" data-route="start-page">
+            <div class="main__container">
+                <div class="main__profile">
+                    <div class="profile">
+                        <img
+                            src="/img/avatar.jpg"
+                            srcset="/img/avatar@2x.jpg 2x"
+                            alt="avatar"
+                            class="profile__avatar"
+                            width="120"
+                            height="120"
+                        />
+                        <div class="profile__info">
+                            <div class="profile__name-wrapper">
+                                <p class="profile__name">Жак-Ив Кусто</p>
+                                <button class="profile__edit-btn">
+                                    <img
+                                        class="profile__edit-btn-icon"
+                                        src="/svg/edit-icon.svg"
+                                        alt="edit"
+                                    />
+                                </button>
                             </div>
-                            <button class="profile__add-card-btn">
-                                <img
-                                    class="profile__add-card-btn-icon"
-                                    src="/svg/plus-icon.svg"
-                                    alt="mystery"
-                                />
-                            </button>
+                            <p class="profile__occupation">Исследователь океана</p>
                         </div>
+                        <button class="profile__add-card-btn">
+                            <img
+                                class="profile__add-card-btn-icon"
+                                src="/svg/plus-icon.svg"
+                                alt="mystery"
+                            />
+                        </button>
                     </div>
-                    <div class="main__card-list">
-                        <ul class="card-list">
-                            <!-- Place for cards -->
-                        </ul>
-                    </div>
+                </div>
+                <div class="main__card-list">
+                    <ul class="card-list">
+                        <!-- Place for cards -->
+                    </ul>
                 </div>
             </div>
         </main>
