@@ -6,7 +6,7 @@ import { Validator } from "./validator";
 
 import LOGIN_VALIDATION_RULES from "../data/login-validation-rules";
 
-const formLinkToLogin = document.querySelector('.main__login-form-link');
+const formLinkToLogin = document.querySelector('.main__form-link');
 const headerLinks = document.querySelectorAll('.header__link');
 const headerLoginEmail = document.querySelector('.header__email');
 

@@ -7,7 +7,7 @@ export class Validator {
         const rules = this._rules[name];
         const errors = [];
 
-        if (!rules) {
+        if (!rules || rules.length) {
             return { isValid: true };
         }
 

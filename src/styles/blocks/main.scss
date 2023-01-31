@@ -11,19 +11,19 @@
         margin-bottom: 24px;
     }
 
-    &__login-form-wrapper {
+    &__form-wrapper {
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    &__login-form {
+    &__form {
         width: 100%;
         max-width: 360px;
         text-align: center;
     }
 
-    &__login-form-link {
+    &__form-link {
         color: $white;
 
         &:hover,
