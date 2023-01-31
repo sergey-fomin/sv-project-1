@@ -1,12 +1,6 @@
 .header {
     min-height: 84px;
 
-    &--logged-in {
-        .header__email {
-            display: block;
-        }
-    }
-
     &__container {
         padding-inline: 20px;
         display: flex;
@@ -31,12 +25,11 @@
     }
 
     &__email {
-        display: none;
         margin: 0;
         font-weight: 500;
     }
 
-    &__login-link {
+    &__link {
         color: $white;
 
         &:hover,

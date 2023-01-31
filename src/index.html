@@ -71,8 +71,10 @@
                     />
                 </svg>
                 <div class="header__login-info">
-                    <p class="header__email"></p>
-                    <a href="#" class="header__login-link">Войти</a>
+                    <p data-route="start-page" class="header__email"></p>
+                    <a href="#" data-route="login" class="header__link">Регистрация</a>
+                    <a href="#" data-route="registration" class="header__link">Войти</a>
+                    <a href="#" data-route="start-page" class="header__link">Выйти</a>
                 </div>
             </div>
         </header>
@@ -80,7 +82,7 @@
             <div class="main__container">
                 <div class="main__login-form-wrapper">
                     <div class="main__login-form main__login-form--registration">
-                        <form class="form form--color-inversion form--login">
+                        <form class="form form--color-inversion form--registration">
                             <fieldset class="form__fieldset">
                                 <legend class="form__title">Регистрация</legend>
                                 <div class="form__input-wrapper">
@@ -113,39 +115,46 @@
                 </div>
             </div>
         </main>
+        <main class="main" data-route="login">
+            <div class="main__container">
+                <div class="main__login-form-wrapper">
+                    <div class="main__login-form main__login-form--login">
+                        <form class="form form--color-inversion form--login">
+                            <fieldset class="form__fieldset">
+                                <legend class="form__title">Вход</legend>
+                                <div class="form__input-wrapper">
+                                    <input
+                                        class="form__input"
+                                        type="email"
+                                        name="loginEmail"
+                                        id="login-email"
+                                        placeholder="Email"
+                                    />
+                                    <div class="form__input-error"></div>
+                                </div>
+                                <div class="form__input-wrapper">
+                                    <input
+                                        class="form__input"
+                                        type="password"
+                                        name="loginPassword"
+                                        id="login-password"
+                                        placeholder="Пароль"
+                                    />
+                                    <div class="form__input-error"></div>
+                                </div>
+                                <button class="form__submit-btn" type="submit">
+                                    Войти
+                                </button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
         <main class="main" data-route="start-page">
             <div class="main__container">
                 <div class="main__profile">
-                    <div class="profile">
-                        <img
-                            src="/img/avatar.jpg"
-                            srcset="/img/avatar@2x.jpg 2x"
-                            alt="avatar"
-                            class="profile__avatar"
-                            width="120"
-                            height="120"
-                        />
-                        <div class="profile__info">
-                            <div class="profile__name-wrapper">
-                                <p class="profile__name">Жак-Ив Кусто</p>
-                                <button class="profile__edit-btn">
-                                    <img
-                                        class="profile__edit-btn-icon"
-                                        src="/svg/edit-icon.svg"
-                                        alt="edit"
-                                    />
-                                </button>
-                            </div>
-                            <p class="profile__occupation">Исследователь океана</p>
-                        </div>
-                        <button class="profile__add-card-btn">
-                            <img
-                                class="profile__add-card-btn-icon"
-                                src="/svg/plus-icon.svg"
-                                alt="mystery"
-                            />
-                        </button>
-                    </div>
+                    <!-- Place for profile -->
                 </div>
                 <div class="main__card-list">
                     <ul class="card-list">
@@ -159,6 +168,40 @@
                 <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
             </div>
         </footer>
+
+        <!-- PROFILE TEMPLATE -->
+        <template id="profile-template">
+            <div class="profile">
+                <img
+                    src="/img/avatar.jpg"
+                    srcset="/img/avatar@2x.jpg 2x"
+                    alt="avatar"
+                    class="profile__avatar"
+                    width="120"
+                    height="120"
+                />
+                <div class="profile__info">
+                    <div class="profile__name-wrapper">
+                        <p class="profile__name">Жак-Ив Кусто</p>
+                        <button class="profile__edit-btn">
+                            <img
+                                class="profile__edit-btn-icon"
+                                src="/svg/edit-icon.svg"
+                                alt="edit"
+                            />
+                        </button>
+                    </div>
+                    <p class="profile__occupation">Исследователь океана</p>
+                </div>
+                <button class="profile__add-card-btn">
+                    <img
+                        class="profile__add-card-btn-icon"
+                        src="/svg/plus-icon.svg"
+                        alt="mystery"
+                    />
+                </button>
+            </div>
+        </template>
 
         <!-- CARD TEMPLATE -->
         <template id="card-template">

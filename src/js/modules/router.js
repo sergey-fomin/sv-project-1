@@ -1,12 +1,14 @@
-export class Router {
-    constructor(startRoute = undefined) {
+class Router {
+    constructor(startRoute) {
         this._routes = document.querySelectorAll('[data-route]');
-        startRoute && this.open(startRoute);
+        this.currentRoute = undefined;
+        this.open(startRoute);
     }
 
     open(page) {
         this._hideAll();
         this._showRoute(page);
+        this.currentRoute = page;
     }
 
     _hideAll() {
@@ -24,3 +26,5 @@ export class Router {
         );
     }
 }
+
+export const router = new Router('start-page');

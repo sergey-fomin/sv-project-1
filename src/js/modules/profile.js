@@ -4,7 +4,16 @@ import { openModalWithContent, closeModal } from "./modal";
 
 import PROFILE_VALIDATION_RULES from "../data/profile-validation-rules";
 
+const placeForProfile = document.querySelector(".main__profile");
+const profileTemplate = document.querySelector("#profile-template").content.querySelector('.profile');
 const editProfileModalTemplate = document.querySelector("#edit-modal-template").content;
+
+
+function showProfile() {
+    const plofileElement = profileTemplate.cloneNode(true);
+    placeForProfile.appendChild(plofileElement);
+    setupEditProfileBtnListener();
+}
 
 /**
  *  Обработчик подтверждения изменений данных профиля
@@ -50,4 +59,5 @@ const setupEditProfileBtnListener = () => {
     editProfileBtn.addEventListener("click", editProfileHandler);
 };
 
-export { setupEditProfileBtnListener };
+
+export { showProfile };
