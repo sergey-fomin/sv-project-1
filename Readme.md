@@ -1,7 +1,15 @@
 # JS Sprint
 
 
-+ разделить логин и регистрацию на отдельные формы
++    userRouter.post('/user/register', registerUser);
+    userRouter.post('/user/login', loginUser);
+    userRouter.post('/user/update', authMiddleware, updateUser);
+    userRouter.get('/user/profile', authMiddleware, getUser);
+
++    cardRouter.get('/cards', getAllCards);
+    cardRouter.post('/cards', authMiddleware, createCard);
+    cardRouter.delete('/cards', authMiddleware, deleteCard);
+    cardRouter.post('/cards/like', authMiddleware, likeCard);
 
 // Запускаем приложение
 // Достаем токен из локалСтораджа
@@ -23,17 +31,10 @@
 // с профилем делаем то что выше
 
 
-+ сделать класс для роутинга (dispaly none на элемент, лучше через аттрибут hidden тега main)
-сделать роутинг
-+ признак отличия по data-attr
-+ записывать роуты в data-route="'route-name'"
+добавить фикс эл-т с текущим роутом
+добавить класс управления состоянием авторизации через дата-атрибуты без значений (показать/скрыть профиль)
+разнести логин и регистрацию модули
 
-+ дать формам айдишники, переехать на них в форм-менеджере (вместо классов)
 
-+ перенести кастомный валидатор в правила валидации
-+ кастомных валидаторов может быть несколько (массив объектов),поправить класс валидатора
-
-+ прикрутить форм-менеджер к карточкам
-+ добавить им валидацию (кастом)
 
 Выполнил: [Сергей Фомин](https://htmlacademy.ru//profile/id1606421).

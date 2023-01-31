@@ -2,14 +2,15 @@
 import "../styles/styles.scss";
 // JS FILES
 import DEFAULT_CARDS from "./data/default-cards";
-import { addCardsFromArray, setupAddCardListener } from "./modules/cards";
-import { showProfile } from "./modules/profile";
-import { setupLoginLinksListener, setupLoginFormManager, setupRegistrationFormManager } from "./modules/login";
+import { loadCardsFromServer } from "./modules/cards";
+import { setupEditProfileBtnListener } from "./modules/profile";
+import { setupLoginLinksListener, setupLoginFormManager } from "./modules/login";
+import { setupRegistrationLinksListener, setupRegistrationFormManager } from "./modules/registration";
 import { api } from "./modules/api";
 
-showProfile();
-setupLoginLinksListener();
+loadCardsFromServer();
+setupEditProfileBtnListener();
+// setupLoginLinksListener();
 setupLoginFormManager();
+setupRegistrationLinksListener();
 setupRegistrationFormManager();
-addCardsFromArray(DEFAULT_CARDS, 6);
-setupAddCardListener();
