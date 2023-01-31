@@ -1,24 +1,13 @@
 import { FormManager } from './form-manager';
 import { Validator } from "./validator";
 import { openModalWithContent, closeModal } from './modal';
+import { api } from './api';
 
 import CARD_VALIDATION_RULES from "../data/card-validation-rules";
 
 const cardTemplate = document.querySelector('#card-template').content.querySelector('.card-list__item');
 const addCardModalTemplate = document.querySelector('#add-card-modal-template').content;
 const imageModalTemplate = document.querySelector('#image-modal-template').content;
-
-/**
- * Получить рандомное число в заданном диапазоне
- * @param {number} min
- * @param {number} max
- * @returns
- */
-const getRandomInt = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 /**
  * Открытие модалки с увеличенной картинкой
@@ -57,22 +46,26 @@ const setupCardListListener = () => {
 /**
  * Добавление на страницу карточек из массива
  * @param {Array} cards - массив с данными карточек
- * @param {number} cardsAmount - количество карточек
+ * @param {number} cardsAmount - необязательно, количество карточек
  */
-const addCardsFromArray = (cards, cardsAmount) => {
+const addCardsFromArray = (cards, cardsAmount = undefined) => {
     setupCardListListener();
+
+    if (!cardsAmount) {
+        cardsAmount = cards.length;
+    }
+
     const cardsListFragment = document.createDocumentFragment();
     const cardsList = document.querySelector('.card-list');
 
     for (let i = 0; i < cardsAmount; i++) {
-        const randomIdx = getRandomInt(0, cards.length - 1);
-        const randomCard = cards[randomIdx];
+        const card = cards[i];
         const cardElement = cardTemplate.cloneNode(true);
+        const cardTitle = cardElement.querySelector('.card-item__title');
         const cardImage = cardElement.querySelector('.card-item__image');
-        cardElement.querySelector('.card-item__title').innerText = randomCard.title || '';
-        cardImage.src = randomCard.imgSrc || '';
-        cardImage.srcset = randomCard.imgSrcSet || '';
-        cardImage.alt = randomCard.imgAlt || '';
+        cardTitle.innerText = card.title || '';
+        cardImage.src = card.url || '';
+        cardImage.alt = card.title || '';
 
         cardsListFragment.appendChild(cardElement);
     }
@@ -131,4 +124,10 @@ const setupAddCardListener = () => {
     addCardBtn.addEventListener('click', addCardHandler);
 }
 
-export { addCardsFromArray, setupAddCardListener };
+function loadCardsFromServer() {
+    api.getCards()
+        .then((cards) => addCardsFromArray(cards))
+        .then(setupAddCardListener);
+}
+
+export { loadCardsFromServer };

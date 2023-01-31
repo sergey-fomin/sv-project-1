@@ -31,6 +31,10 @@ class Api {
         return this._request('/user/profile', 'GET');
     }
 
+    getCards() {
+        return this._request('/cards', 'GET');
+    }
+
 }
 
 export const api = new Api();
