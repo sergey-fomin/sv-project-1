@@ -2,7 +2,7 @@
 
 
 +    userRouter.post('/user/register', registerUser);
-    userRouter.post('/user/login', loginUser);
++    userRouter.post('/user/login', loginUser);
     userRouter.post('/user/update', authMiddleware, updateUser);
     userRouter.get('/user/profile', authMiddleware, getUser);
 

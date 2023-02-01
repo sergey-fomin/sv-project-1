@@ -9,6 +9,7 @@ import LOGIN_VALIDATION_RULES from "../data/login-validation-rules";
 const formLinkToLogin = document.querySelector('.main__form-link');
 const headerLinks = document.querySelectorAll('.header__link');
 const headerLoginEmail = document.querySelector('.header__email');
+const loginMessageContent = document.querySelector('#login-message-template').content.cloneNode(true);
 
 
 const loadProfileContent = () => {
@@ -29,6 +30,15 @@ const loginLinksHandler = (evt) => {
     }
 }
 
+function showFailModal() {
+    openModalWithContent(loginMessageContent);
+    const loginMessageImg = document.querySelector('.login-message__icon');
+    const loginMessageText = document.querySelector('.login-message__text');
+    loginMessageImg.src = require('../../assets/svg/fail-icon.svg');
+    loginMessageImg.alt = 'fail-icon';
+    loginMessageText.innerText = 'Что-то пошло не так! Попробуйте ещё раз.';
+}
+
 const loginSubmitHandler = (data) => {
 
     console.log(data);
@@ -40,10 +50,13 @@ const loginSubmitHandler = (data) => {
             localStorage.setItem('token', data.token);
             router.open('start-page');
         } else {
-            localStorage.removeItem('token');
+            throw new Error('User not found');
         }
-        console.log('data', data);
-    })
+    }).catch((error) => {
+        localStorage.removeItem('token');
+        showFailModal();
+        console.error(error);
+    });
 }
 
 const setupLoginLinksListener = () => {
@@ -65,16 +78,4 @@ const setupLoginFormManager = () => {
     });
 }
 
-const setupRegistrationFormManager = () => {
-    new FormManager({
-        formSelector: ".form--registration",
-        inputSelector: ".form__input",
-        errorClass: "form__input--invalid",
-        submitBtnSelector: ".form__submit-btn",
-        submitErrorClass: "form__submit-btn--disabled",
-        validator: new Validator(LOGIN_VALIDATION_RULES),
-        onSubmit: loginSubmitHandler,
-    });
-}
-
-export { setupLoginLinksListener, setupLoginFormManager, setupRegistrationFormManager };
+export { setupLoginLinksListener, setupLoginFormManager };

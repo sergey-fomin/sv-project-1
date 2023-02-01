@@ -57,10 +57,14 @@ const registrationSubmitHandler = (data) => {
     }).then((data) => {
         if (data.success) {
             showSuccessModal();
+            router.open('login');
         } else {
-            throw new Error;
+            throw new Error(data.error);
         }
-    }).catch(showFailModal);
+    }).catch((error) => {
+        console.error(error);
+        showFailModal();
+    });
 }
 
 const setupRegistrationLinksListener = () => {
