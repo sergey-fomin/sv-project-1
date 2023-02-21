@@ -1,4 +1,5 @@
 const modalTemplate = document.querySelector('#modal-template').content.querySelector('.modal');
+const modalMessageContent = document.querySelector('#modal-message-template').content.cloneNode(true);
 
 /**
  * Проверка нажатой клавиши
@@ -48,4 +49,25 @@ const openModalWithContent = (content) => {
     setupCloseModalListener(modalCloseBtn);
 }
 
-export { openModalWithContent, closeModal };
+/**
+ * Показать модалку успеха/провала с текстом
+ * @param type {'success' | 'fail'} тип модалки
+ * @param text {string} строка с текстом
+ */
+function showModalWithText(type, text) {
+    openModalWithContent(modalMessageContent);
+    const messageImg = document.querySelector('.login-message__icon');
+    const messageText = document.querySelector('.login-message__text');
+    // messageImg.src = require(`../../assets/svg/${type}-icon.svg`);
+    // messageImg.alt = `${type}-icon`;
+    if (type === 'success') {
+        messageImg.src = require('../../assets/svg/success-icon.svg');
+        messageImg.alt = 'success-icon';
+    } else {
+        messageImg.src = require('../../assets/svg/fail-icon.svg');
+        messageImg.alt = 'fail-icon';
+    }
+    messageText.innerText = text;
+}
+
+export { openModalWithContent, closeModal, showModalWithText };

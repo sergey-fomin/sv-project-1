@@ -1,4 +1,4 @@
-import { openModalWithContent, closeModal } from './modal';
+import { showModalWithText } from './modal';
 import { router } from './router';
 import { api } from './api';
 import { FormManager } from "./form-manager";
@@ -9,7 +9,6 @@ import REGISTRATION_VALIDATION_RULES from "../data/registration-validation-rules
 const formLinkToLogin = document.querySelector('.main__form-link');
 const headerLinks = document.querySelectorAll('.header__link');
 const headerLoginEmail = document.querySelector('.header__email');
-const registrationMessageContent = document.querySelector('#login-message-template').content.cloneNode(true);
 
 const loadProfileContent = () => {
     headerLoginEmail.textContent = 'email@mail.com';
@@ -29,24 +28,6 @@ const loginLinksHandler = (evt) => {
     }
 }
 
-function showSuccessModal() {
-    openModalWithContent(registrationMessageContent);
-    const registrationMessageImg = document.querySelector('.login-message__icon');
-    const registrationMessageText = document.querySelector('.login-message__text');
-    registrationMessageImg.src = require('../../assets/svg/success-icon.svg');
-    registrationMessageImg.alt = 'success-icon';
-    registrationMessageText.innerText = 'Вы успешно зарегистрировались!';
-}
-
-function showFailModal() {
-    openModalWithContent(registrationMessageContent);
-    const registrationMessageImg = document.querySelector('.login-message__icon');
-    const registrationMessageText = document.querySelector('.login-message__text');
-    registrationMessageImg.src = require('../../assets/svg/fail-icon.svg');
-    registrationMessageImg.alt = 'fail-icon';
-    registrationMessageText.innerText = 'Что-то пошло не так! Попробуйте ещё раз.';
-}
-
 const registrationSubmitHandler = (data) => {
     api.register({
         name: data.registrationName,
@@ -56,14 +37,14 @@ const registrationSubmitHandler = (data) => {
         password: data.registrationPassword,
     }).then((data) => {
         if (data.success) {
-            showSuccessModal();
+            showModalWithText('success', 'Вы успешно зарегистрировались!')
             router.open('login');
         } else {
             throw new Error(data.error);
         }
     }).catch((error) => {
         console.error(error);
-        showFailModal();
+        showModalWithText('fail', 'Что-то пошло не так! Попробуйте ещё раз.')
     });
 }
 
