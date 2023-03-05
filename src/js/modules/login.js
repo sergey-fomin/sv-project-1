@@ -1,58 +1,37 @@
 import { showModalWithText } from './modal';
 import { router } from './router';
 import { api } from './api';
+import { authorization } from './authorization';
 import { FormManager } from "./form-manager";
 import { Validator } from "./validator";
 
 import LOGIN_VALIDATION_RULES from "../data/login-validation-rules";
 
-const formLinkToLogin = document.querySelector('.main__form-link');
-const headerLinks = document.querySelectorAll('.header__link');
 const headerLoginEmail = document.querySelector('.header__email');
 
-
-const loadProfileContent = () => {
-    headerLoginEmail.textContent = 'email@mail.com';
+const loadProfileContent = (email) => {
+    headerLoginEmail.textContent = email;
     router.open('start-page');
-}
-
-const loginLinksHandler = (evt) => {
-    evt.preventDefault();
-
-    switch(router.currentRoute) {
-        case 'registration':
-            router.open('login');
-            break;
-        default:
-            router.open('registration');
-            break;
-    }
+    authorization.showAuthorizedContent();
 }
 
 const loginSubmitHandler = (data) => {
+    const email = data.loginEmail;
 
-    console.log(data);
     api.login({
         email: data.loginEmail,
         password: data.loginPassword
     }).then((data) => {
         if (data.success) {
-            localStorage.setItem('token', data.token);
-            router.open('start-page');
+            loadProfileContent(email);
+            api.saveToken(data.token);
         } else {
-            throw new Error('User not found');
+            throw new Error(`User ${email} not found`);
         }
     }).catch((error) => {
-        localStorage.removeItem('token');
+        api.removeToken();
         showModalWithText('fail', 'Что-то пошло не так! Попробуйте ещё раз.')
         console.error(error);
-    });
-}
-
-const setupLoginLinksListener = () => {
-    formLinkToLogin.addEventListener('click', loginLinksHandler);
-    headerLinks.forEach((link) => {
-        link.addEventListener('click', loginLinksHandler)
     });
 }
 
@@ -68,4 +47,4 @@ const setupLoginFormManager = () => {
     });
 }
 
-export { setupLoginLinksListener, setupLoginFormManager };
+export { setupLoginFormManager };

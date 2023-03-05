@@ -70,11 +70,23 @@
                         fill="black"
                     />
                 </svg>
-                <div class="header__login-info">
-                    <p data-route="start-page" class="header__email"></p>
-                    <a href="#" data-route="login" class="header__link">Регистрация</a>
-                    <a href="#" data-route="registration" class="header__link">Войти</a>
-                    <a href="#" data-route="start-page" class="header__link">Выйти</a>
+                <!-- Главная страница -->
+                <div class="header__login-info" data-route="start-page">
+                    <!-- Авторизованная зона -->
+                    <p data-authorized class="header__email"></p>
+                    <a href="#" data-authorized data-link="logout" class="header__link">Выйти</a>
+                    <!-- Неавторизованная зона -->
+                    <a href="#" data-unauthorized data-link="login" class="header__link">Войти</a>
+                    <span data-unauthorized>/</span>
+                    <a href="#" data-unauthorized data-link="registration" class="header__link">Регистрация</a>
+                </div>
+                <!-- Страница регистрации -->
+                <div class="header__login-info" data-route="registration">
+                    <a href="#" data-link="login" class="header__link">Войти</a>
+                </div>
+                <!-- Страница логина -->
+                <div class="header__login-info" data-route="login">
+                    <a href="#" data-link="registration" class="header__link">Регистрация</a>
                 </div>
             </div>
         </header>
@@ -140,7 +152,7 @@
                                 </button>
                             </fieldset>
                         </form>
-                        <a href="#" class="main__form-link">Уже зарегистрированы? Войти</a>
+                        <a href="#" data-link="login" class="main__form-link">Уже зарегистрированы? Войти</a>
                     </div>
                 </div>
             </div>
@@ -183,7 +195,7 @@
         </main>
         <main class="main" data-route="start-page">
             <div class="main__container">
-                <div class="main__profile">
+                <div class="main__profile" data-authorized>
                     <div class="profile">
                         <img
                             src="/img/avatar.jpg"
@@ -241,6 +253,15 @@
                         <p class="card-item__title"></p>
                         <button class="card-item__like-btn"></button>
                     </div>
+                    <button class="card-item__delete-btn" data-authorized>
+                        <img
+                            width="19"
+                            height="22"
+                            class="card-item__delete-btn-icon"
+                            src="/svg/delete-icon.svg"
+                            alt="delete icon"
+                        />
+                    </button>
                 </div>
             </li>
         </template>
@@ -266,8 +287,8 @@
             </div>
         </template>
 
-        <!-- LOGIN MESSAGE MODAL CONTENT -->
-        <template id="login-message-template">
+        <!-- MODAL MESSAGE CONTENT -->
+        <template id="modal-message-template">
             <div class="login-message">
                 <img src="/svg/success-icon.svg" class="login-message__icon">
                 <p class="login-message__text"></p>
@@ -344,6 +365,7 @@
             </div>
         </template>
 
+        <!-- CARD IMAGE MODAL CONTENT -->
         <template id="image-modal-template">
             <div class="modal__image-container">
                 <div class="modal__image-wrapper">

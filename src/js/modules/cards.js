@@ -2,6 +2,7 @@ import { FormManager } from './form-manager';
 import { Validator } from "./validator";
 import { openModalWithContent, closeModal } from './modal';
 import { api } from './api';
+import { authorization } from './authorization';
 
 import CARD_VALIDATION_RULES from "../data/card-validation-rules";
 
@@ -26,6 +27,7 @@ const openCardImageModal = (image) => {
  * Обработчик события клика на карточку
  */
 const cardsListHandler = (evt) => {
+    // console.log('TARGET:', evt.target)
     if (evt.target.matches('.card-item__image')) {
         const clickedImageClone = evt.target.cloneNode(true);
         openCardImageModal(clickedImageClone);
@@ -33,14 +35,43 @@ const cardsListHandler = (evt) => {
     if (evt.target.matches('.card-item__like-btn')) {
         evt.target.classList.toggle('is-active');
     }
+    if (evt.target.matches('.card-item__delete-btn')) {
+        console.log('DELETE THIS!', evt);
+        api.deleteCard()
+    }
 }
 
 /**
  * Устанавливаем обработчик события клика на карточку
  */
 const setupCardListListener = () => {
-    const cardsList = document.querySelector('.card-list');
-    cardsList.addEventListener('click', cardsListHandler);
+    const cardsList = document.querySelectorAll('.card-list__item');
+    cardsList.forEach((card) => {
+        card.addEventListener('click', (evt) => {
+            if (evt.target.matches('.card-item__image')) {
+                const clickedImageClone = evt.target.cloneNode(true);
+                openCardImageModal(clickedImageClone);
+            }
+            if (evt.target.matches('.card-item__like-btn')) {
+                evt.target.classList.toggle('is-active');
+            }
+            if (evt.target.matches('.card-item__delete-btn')) {
+                console.log('DELETE THIS!', evt);
+                console.log('card.id', card.id);
+                api.getProfile()
+                    .then(({user: {id: userId}} = data) => {
+                        console.log('userId', userId)
+                        api.deleteCard({
+                            userId: userId,
+                            body: {
+                                cardId: card.Id
+                            }
+                        })
+                    })
+            }
+        })
+    })
+    // cardsList.addEventListener('click', cardsListHandler);
 }
 
 /**
@@ -49,7 +80,7 @@ const setupCardListListener = () => {
  * @param {number} cardsAmount - необязательно, количество карточек
  */
 const addCardsFromArray = (cards, cardsAmount = undefined) => {
-    setupCardListListener();
+    // setupCardListListener();
 
     if (!cardsAmount) {
         cardsAmount = cards.length;
@@ -66,11 +97,14 @@ const addCardsFromArray = (cards, cardsAmount = undefined) => {
         cardTitle.innerText = card.title || '';
         cardImage.src = card.url || '';
         cardImage.alt = card.title || '';
+        cardElement.id = card.id;
 
         cardsListFragment.appendChild(cardElement);
     }
 
     cardsList.appendChild(cardsListFragment);
+    setupCardListListener();
+    authorization.isAuthorized ? authorization.showAuthorizedContent() : authorization.showUnauthorizedContent();
 }
 
 /**
@@ -89,12 +123,18 @@ const addCard = (title, url) => {
     cardImage.alt = title;
 
     cardsList.appendChild(cardElement);
+    authorization.isAuthorized ? authorization.showAuthorizedContent() : authorization.showUnauthorizedContent();
 }
 /**
  * Обработчик клика на кнопку подтверждения формы создания карточки
 */
 const submitCardAddingHandler = (data) => {
-    addCard(data.placeTitle, data.imageUrl);
+    api.createCard({
+        title: data.placeTitle,
+        url: data.imageUrl,
+    }).then(({title, url}) =>
+        addCard(title, url)
+    );
     closeModal();
 }
 

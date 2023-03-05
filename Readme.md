@@ -3,11 +3,11 @@
 
 +    userRouter.post('/user/register', registerUser);
 +    userRouter.post('/user/login', loginUser);
-    userRouter.post('/user/update', authMiddleware, updateUser);
-    userRouter.get('/user/profile', authMiddleware, getUser);
+    userRouter.post('/user/update', authMiddleware, updateUser); ?????? updateUser пустая
+    userRouter.get('/user/profile', authMiddleware, getUser); ?????? где это нужно?
 
 +    cardRouter.get('/cards', getAllCards);
-    cardRouter.post('/cards', authMiddleware, createCard);
++    cardRouter.post('/cards', authMiddleware, createCard);
     cardRouter.delete('/cards', authMiddleware, deleteCard);
     cardRouter.post('/cards/like', authMiddleware, likeCard);
 
@@ -31,9 +31,9 @@
 // с профилем делаем то что выше
 
 
-добавить фикс эл-т с текущим роутом
-добавить класс управления состоянием авторизации через дата-атрибуты без значений (показать/скрыть профиль)
-разнести логин и регистрацию модули
++ добавить фикс эл-т с текущим роутом
++ добавить класс управления состоянием авторизации через дата-атрибуты без значений (показать/скрыть профиль)
++ разнести логин и регистрацию модули
 
 
 

@@ -58,15 +58,8 @@ function showModalWithText(type, text) {
     openModalWithContent(modalMessageContent);
     const messageImg = document.querySelector('.login-message__icon');
     const messageText = document.querySelector('.login-message__text');
-    // messageImg.src = require(`../../assets/svg/${type}-icon.svg`);
-    // messageImg.alt = `${type}-icon`;
-    if (type === 'success') {
-        messageImg.src = require('../../assets/svg/success-icon.svg');
-        messageImg.alt = 'success-icon';
-    } else {
-        messageImg.src = require('../../assets/svg/fail-icon.svg');
-        messageImg.alt = 'fail-icon';
-    }
+    messageImg.src = require(`../../assets/svg/${type}-icon.svg`);
+    messageImg.alt = `${type}-icon`;
     messageText.innerText = text;
 }
 

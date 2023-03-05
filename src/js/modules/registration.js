@@ -6,28 +6,6 @@ import { Validator } from "./validator";
 
 import REGISTRATION_VALIDATION_RULES from "../data/registration-validation-rules";
 
-const formLinkToLogin = document.querySelector('.main__form-link');
-const headerLinks = document.querySelectorAll('.header__link');
-const headerLoginEmail = document.querySelector('.header__email');
-
-const loadProfileContent = () => {
-    headerLoginEmail.textContent = 'email@mail.com';
-    router.open('start-page');
-}
-
-const loginLinksHandler = (evt) => {
-    evt.preventDefault();
-
-    switch(router.currentRoute) {
-        case 'registration':
-            router.open('login');
-            break;
-        default:
-            router.open('registration');
-            break;
-    }
-}
-
 const registrationSubmitHandler = (data) => {
     api.register({
         name: data.registrationName,
@@ -48,13 +26,6 @@ const registrationSubmitHandler = (data) => {
     });
 }
 
-const setupRegistrationLinksListener = () => {
-    formLinkToLogin.addEventListener('click', loginLinksHandler);
-    headerLinks.forEach((link) => {
-        link.addEventListener('click', loginLinksHandler)
-    });
-}
-
 const setupRegistrationFormManager = () => {
     new FormManager({
         formSelector: ".form--registration",
@@ -67,4 +38,4 @@ const setupRegistrationFormManager = () => {
     });
 }
 
-export { setupRegistrationLinksListener, setupRegistrationFormManager };
+export { setupRegistrationFormManager };
